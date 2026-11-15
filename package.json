@@ -1,0 +1,14 @@
+{
+  "name": "wishluck-lp-builder",
+  "private": true,
+  "scripts": {
+    "setup": "npm --prefix backend install && npm --prefix frontend install && npx --prefix backend playwright install chromium",
+    "dev": "npm --prefix backend run dev & npm --prefix frontend run dev",
+    "build": "npm --prefix frontend run build",
+    "start": "npm --prefix frontend run build && npm --prefix backend start",
+    "test": "npm --prefix backend test",
+    "theme:check": "npm --prefix backend run theme:check",
+    "shopify:check": "npm --prefix backend run shopify:check",
+    "seed": "npm --prefix backend run seed"
+  }
+}

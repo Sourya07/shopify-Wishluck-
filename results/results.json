@@ -1,0 +1,1906 @@
+{
+  "generatedAt": "2026-11-15T05:52:19.141Z",
+  "report": [
+    {
+      "url": "http://localhost:4100/products/heavyweight-oversized-tee",
+      "runId": "run_dc37d399c4",
+      "title": "Heavyweight Oversized Tee",
+      "category": "t-shirts",
+      "group": "clothing",
+      "competitors": 10,
+      "learnings": 25,
+      "designs": [
+        {
+          "id": "des_2184ea0e4b",
+          "name": "Benefit grid",
+          "suffix": "lp-t-shirts-dc37-1",
+          "fingerprint": {
+            "direction": "benefit_grid",
+            "heroType": "split_left",
+            "sectionOrder": [
+              "hero",
+              "benefits",
+              "comparison",
+              "specs",
+              "reviews",
+              "faq",
+              "cta",
+              "sticky_atc"
+            ],
+            "colorMode": "light",
+            "atcPlacement": "hero+end+sticky",
+            "density": "comfortable",
+            "typeScale": "compact",
+            "imageTreatment": "split",
+            "benefitLayout": "cards",
+            "faqStyle": "open"
+          },
+          "diversity": {
+            "minHistory": 1,
+            "nearest": null,
+            "passed": true
+          },
+          "seo": {
+            "SEO": 100,
+            "AEO": 100,
+            "GEO": 100
+          },
+          "lighthouse": {
+            "url": "http://127.0.0.1:4000/preview/des_2184ea0e4b",
+            "performance": 99,
+            "accessibility": 100,
+            "seo": 100,
+            "bestPractices": 100,
+            "source": "local preview"
+          },
+          "applied": [
+            "repeat_atc",
+            "faq_near_end",
+            "specs_table",
+            "gap:comparison",
+            "sticky_atc",
+            "atc_above_fold_mobile",
+            "reviews_near_price",
+            "cod_near_atc",
+            "delivery_estimate",
+            "returns",
+            "compare_at_discount"
+          ],
+          "overflow": {
+            "360": false,
+            "768": false,
+            "1440": false
+          },
+          "atcAllVariants": {
+            "360": {
+              "ok": 15,
+              "tried": 15,
+              "fails": []
+            },
+            "1440": {
+              "ok": 15,
+              "tried": 15,
+              "fails": []
+            }
+          },
+          "atcAboveFold360": true,
+          "atcTop360": 518,
+          "stickyAfterScroll": true
+        },
+        {
+          "id": "des_45d5e12ccf",
+          "name": "Story led",
+          "suffix": "lp-t-shirts-dc37-2",
+          "fingerprint": {
+            "direction": "story",
+            "heroType": "overlay",
+            "sectionOrder": [
+              "hero",
+              "story",
+              "gallery",
+              "benefits",
+              "reviews",
+              "faq",
+              "cta",
+              "specs",
+              "sticky_atc"
+            ],
+            "colorMode": "light",
+            "atcPlacement": "hero+end+sticky",
+            "density": "comfortable",
+            "typeScale": "editorial",
+            "imageTreatment": "full-bleed",
+            "benefitLayout": "numbered",
+            "faqStyle": "accordion"
+          },
+          "diversity": {
+            "minHistory": 1,
+            "nearest": null,
+            "passed": true
+          },
+          "seo": {
+            "SEO": 100,
+            "AEO": 100,
+            "GEO": 100
+          },
+          "lighthouse": {
+            "url": "http://127.0.0.1:4000/preview/des_45d5e12ccf",
+            "performance": 99,
+            "accessibility": 100,
+            "seo": 100,
+            "bestPractices": 100,
+            "source": "local preview"
+          },
+          "applied": [
+            "repeat_atc",
+            "faq_near_end",
+            "specs_table",
+            "reviews_after_benefits",
+            "sticky_atc",
+            "atc_above_fold_mobile",
+            "reviews_near_price",
+            "cod_near_atc",
+            "delivery_estimate",
+            "returns",
+            "compare_at_discount"
+          ],
+          "overflow": {
+            "360": false,
+            "768": false,
+            "1440": false
+          },
+          "atcAllVariants": {
+            "360": {
+              "ok": 15,
+              "tried": 15,
+              "fails": []
+            },
+            "1440": {
+              "ok": 15,
+              "tried": 15,
+              "fails": []
+            }
+          },
+          "atcAboveFold360": true,
+          "atcTop360": 531,
+          "stickyAfterScroll": true
+        },
+        {
+          "id": "des_fb1631e5b1",
+          "name": "Social proof heavy",
+          "suffix": "lp-t-shirts-dc37-3",
+          "fingerprint": {
+            "direction": "social_proof",
+            "heroType": "split_right",
+            "sectionOrder": [
+              "hero",
+              "trust_bar",
+              "reviews",
+              "benefits",
+              "gallery",
+              "faq",
+              "cta",
+              "specs",
+              "sticky_atc"
+            ],
+            "colorMode": "tint",
+            "atcPlacement": "hero+end+sticky",
+            "density": "comfortable",
+            "typeScale": "editorial",
+            "imageTreatment": "split",
+            "benefitLayout": "cards",
+            "faqStyle": "centered"
+          },
+          "diversity": {
+            "minHistory": 1,
+            "nearest": null,
+            "passed": true
+          },
+          "seo": {
+            "SEO": 100,
+            "AEO": 100,
+            "GEO": 100
+          },
+          "lighthouse": {
+            "url": "http://127.0.0.1:4000/preview/des_fb1631e5b1",
+            "performance": 99,
+            "accessibility": 100,
+            "seo": 100,
+            "bestPractices": 100,
+            "source": "local preview"
+          },
+          "applied": [
+            "repeat_atc",
+            "faq_near_end",
+            "specs_table",
+            "sticky_atc",
+            "atc_above_fold_mobile",
+            "reviews_near_price",
+            "cod_near_atc",
+            "delivery_estimate",
+            "returns",
+            "compare_at_discount"
+          ],
+          "overflow": {
+            "360": false,
+            "768": false,
+            "1440": false
+          },
+          "atcAllVariants": {
+            "360": {
+              "ok": 15,
+              "tried": 15,
+              "fails": []
+            },
+            "1440": {
+              "ok": 15,
+              "tried": 15,
+              "fails": []
+            }
+          },
+          "atcAboveFold360": true,
+          "atcTop360": 561,
+          "stickyAfterScroll": true
+        },
+        {
+          "id": "des_e9d60acfbd",
+          "name": "Offer led",
+          "suffix": "lp-t-shirts-dc37-4",
+          "fingerprint": {
+            "direction": "offer_led",
+            "heroType": "stacked",
+            "sectionOrder": [
+              "hero",
+              "offer",
+              "benefits",
+              "cta",
+              "faq",
+              "specs",
+              "sticky_atc"
+            ],
+            "colorMode": "bold",
+            "atcPlacement": "hero+offer+mid+sticky",
+            "density": "comfortable",
+            "typeScale": "standard",
+            "imageTreatment": "centered",
+            "benefitLayout": "numbered",
+            "faqStyle": "centered"
+          },
+          "diversity": {
+            "minHistory": 1,
+            "nearest": null,
+            "passed": true
+          },
+          "seo": {
+            "SEO": 100,
+            "AEO": 100,
+            "GEO": 100
+          },
+          "lighthouse": {
+            "url": "http://127.0.0.1:4000/preview/des_e9d60acfbd",
+            "performance": 99,
+            "accessibility": 100,
+            "seo": 100,
+            "bestPractices": 100,
+            "source": "local preview"
+          },
+          "applied": [
+            "repeat_atc",
+            "faq_near_end",
+            "specs_table",
+            "sticky_atc",
+            "atc_above_fold_mobile",
+            "reviews_near_price",
+            "cod_near_atc",
+            "delivery_estimate",
+            "returns",
+            "compare_at_discount"
+          ],
+          "overflow": {
+            "360": false,
+            "768": false,
+            "1440": false
+          },
+          "atcAllVariants": {
+            "360": {
+              "ok": 15,
+              "tried": 15,
+              "fails": []
+            },
+            "1440": {
+              "ok": 15,
+              "tried": 15,
+              "fails": []
+            }
+          },
+          "atcAboveFold360": true,
+          "atcTop360": 549,
+          "stickyAfterScroll": true
+        }
+      ]
+    },
+    {
+      "url": "http://localhost:4100/products/fleece-zip-hoodie",
+      "runId": "run_cc6650d60e",
+      "title": "Brushed Fleece Zip Hoodie",
+      "category": "hoodies",
+      "group": "clothing",
+      "competitors": 10,
+      "learnings": 25,
+      "designs": [
+        {
+          "id": "des_fa537d52b8",
+          "name": "Facts first (GEO)",
+          "suffix": "lp-hoodies-cc66-1",
+          "fingerprint": {
+            "direction": "spec_sheet",
+            "heroType": "editorial",
+            "sectionOrder": [
+              "hero",
+              "trust_bar",
+              "specs",
+              "faq",
+              "story",
+              "cta",
+              "sticky_atc"
+            ],
+            "colorMode": "dark",
+            "atcPlacement": "hero+end+sticky",
+            "density": "comfortable",
+            "typeScale": "editorial",
+            "imageTreatment": "editorial",
+            "benefitLayout": "numbered",
+            "faqStyle": "open"
+          },
+          "diversity": {
+            "minHistory": 0.64,
+            "nearest": "Social proof heavy",
+            "passed": true
+          },
+          "seo": {
+            "SEO": 100,
+            "AEO": 100,
+            "GEO": 100
+          },
+          "lighthouse": {
+            "url": "http://127.0.0.1:4000/preview/des_fa537d52b8",
+            "performance": 100,
+            "accessibility": 100,
+            "seo": 100,
+            "bestPractices": 100,
+            "source": "local preview"
+          },
+          "applied": [
+            "repeat_atc",
+            "faq_near_end",
+            "specs_table",
+            "sticky_atc",
+            "atc_above_fold_mobile",
+            "reviews_near_price",
+            "cod_near_atc",
+            "delivery_estimate",
+            "returns"
+          ],
+          "overflow": {
+            "360": false,
+            "768": false,
+            "1440": false
+          },
+          "atcAllVariants": {
+            "360": {
+              "ok": 4,
+              "tried": 4,
+              "fails": []
+            },
+            "1440": {
+              "ok": 4,
+              "tried": 4,
+              "fails": []
+            }
+          },
+          "atcAboveFold360": true,
+          "atcTop360": 299,
+          "stickyAfterScroll": true
+        },
+        {
+          "id": "des_bb74725baa",
+          "name": "Offer led",
+          "suffix": "lp-hoodies-cc66-2",
+          "fingerprint": {
+            "direction": "offer_led",
+            "heroType": "gallery_grid",
+            "sectionOrder": [
+              "hero",
+              "trust_bar",
+              "offer",
+              "specs",
+              "reviews",
+              "faq",
+              "cta",
+              "sticky_atc"
+            ],
+            "colorMode": "tint",
+            "atcPlacement": "hero+offer+end+sticky",
+            "density": "comfortable",
+            "typeScale": "standard",
+            "imageTreatment": "grid",
+            "benefitLayout": "grid",
+            "faqStyle": "open"
+          },
+          "diversity": {
+            "minHistory": 0.596,
+            "nearest": "Offer led",
+            "passed": true
+          },
+          "seo": {
+            "SEO": 100,
+            "AEO": 100,
+            "GEO": 100
+          },
+          "lighthouse": {
+            "url": "http://127.0.0.1:4000/preview/des_bb74725baa",
+            "performance": 99,
+            "accessibility": 100,
+            "seo": 100,
+            "bestPractices": 100,
+            "source": "local preview"
+          },
+          "applied": [
+            "repeat_atc",
+            "faq_near_end",
+            "specs_table",
+            "sticky_atc",
+            "atc_above_fold_mobile",
+            "reviews_near_price",
+            "cod_near_atc",
+            "delivery_estimate",
+            "returns"
+          ],
+          "overflow": {
+            "360": false,
+            "768": false,
+            "1440": false
+          },
+          "atcAllVariants": {
+            "360": {
+              "ok": 4,
+              "tried": 4,
+              "fails": []
+            },
+            "1440": {
+              "ok": 4,
+              "tried": 4,
+              "fails": []
+            }
+          },
+          "atcAboveFold360": true,
+          "atcTop360": 505,
+          "stickyAfterScroll": true
+        },
+        {
+          "id": "des_fe8148041c",
+          "name": "Social proof heavy",
+          "suffix": "lp-hoodies-cc66-3",
+          "fingerprint": {
+            "direction": "social_proof",
+            "heroType": "stacked",
+            "sectionOrder": [
+              "hero",
+              "gallery",
+              "reviews",
+              "specs",
+              "faq",
+              "cta",
+              "sticky_atc"
+            ],
+            "colorMode": "bold",
+            "atcPlacement": "hero+end+sticky",
+            "density": "comfortable",
+            "typeScale": "standard",
+            "imageTreatment": "centered",
+            "benefitLayout": "cards",
+            "faqStyle": "open"
+          },
+          "diversity": {
+            "minHistory": 0.506,
+            "nearest": "Offer led",
+            "passed": true
+          },
+          "seo": {
+            "SEO": 100,
+            "AEO": 100,
+            "GEO": 100
+          },
+          "lighthouse": {
+            "url": "http://127.0.0.1:4000/preview/des_fe8148041c",
+            "performance": 99,
+            "accessibility": 100,
+            "seo": 100,
+            "bestPractices": 100,
+            "source": "local preview"
+          },
+          "applied": [
+            "repeat_atc",
+            "faq_near_end",
+            "specs_table",
+            "sticky_atc",
+            "atc_above_fold_mobile",
+            "reviews_near_price",
+            "cod_near_atc",
+            "delivery_estimate",
+            "returns"
+          ],
+          "overflow": {
+            "360": false,
+            "768": false,
+            "1440": false
+          },
+          "atcAllVariants": {
+            "360": {
+              "ok": 4,
+              "tried": 4,
+              "fails": []
+            },
+            "1440": {
+              "ok": 4,
+              "tried": 4,
+              "fails": []
+            }
+          },
+          "atcAboveFold360": true,
+          "atcTop360": 505,
+          "stickyAfterScroll": true
+        },
+        {
+          "id": "des_d913aea908",
+          "name": "Story led",
+          "suffix": "lp-hoodies-cc66-4",
+          "fingerprint": {
+            "direction": "story",
+            "heroType": "split_right",
+            "sectionOrder": [
+              "hero",
+              "story",
+              "benefits",
+              "gallery",
+              "reviews",
+              "specs",
+              "faq",
+              "cta",
+              "sticky_atc"
+            ],
+            "colorMode": "dark",
+            "atcPlacement": "hero+end+sticky",
+            "density": "comfortable",
+            "typeScale": "standard",
+            "imageTreatment": "split",
+            "benefitLayout": "numbered",
+            "faqStyle": "centered"
+          },
+          "diversity": {
+            "minHistory": 0.394,
+            "nearest": "Story led",
+            "passed": true
+          },
+          "seo": {
+            "SEO": 100,
+            "AEO": 100,
+            "GEO": 100
+          },
+          "lighthouse": {
+            "url": "http://127.0.0.1:4000/preview/des_d913aea908",
+            "performance": 99,
+            "accessibility": 100,
+            "seo": 100,
+            "bestPractices": 100,
+            "source": "local preview"
+          },
+          "applied": [
+            "repeat_atc",
+            "faq_near_end",
+            "specs_table",
+            "sticky_atc",
+            "atc_above_fold_mobile",
+            "reviews_near_price",
+            "cod_near_atc",
+            "delivery_estimate",
+            "returns"
+          ],
+          "overflow": {
+            "360": false,
+            "768": false,
+            "1440": false
+          },
+          "atcAllVariants": {
+            "360": {
+              "ok": 4,
+              "tried": 4,
+              "fails": []
+            },
+            "1440": {
+              "ok": 4,
+              "tried": 4,
+              "fails": []
+            }
+          },
+          "atcAboveFold360": true,
+          "atcTop360": 505,
+          "stickyAfterScroll": true
+        }
+      ]
+    },
+    {
+      "url": "http://localhost:4100/products/utility-cargo-pants",
+      "runId": "run_45ff3b274a",
+      "title": "Utility Cargo Pants",
+      "category": "bottoms",
+      "group": "clothing",
+      "competitors": 10,
+      "learnings": 25,
+      "designs": [
+        {
+          "id": "des_25677b37be",
+          "name": "Benefit grid",
+          "suffix": "lp-bottoms-45ff-1",
+          "fingerprint": {
+            "direction": "benefit_grid",
+            "heroType": "split_left",
+            "sectionOrder": [
+              "hero",
+              "benefits",
+              "cta",
+              "specs",
+              "comparison",
+              "faq",
+              "sticky_atc"
+            ],
+            "colorMode": "light",
+            "atcPlacement": "hero+mid+sticky",
+            "density": "comfortable",
+            "typeScale": "compact",
+            "imageTreatment": "split",
+            "benefitLayout": "cards",
+            "faqStyle": "open"
+          },
+          "diversity": {
+            "minHistory": 0.646,
+            "nearest": "Social proof heavy",
+            "passed": true
+          },
+          "seo": {
+            "SEO": 100,
+            "AEO": 100,
+            "GEO": 93
+          },
+          "lighthouse": {
+            "url": "http://127.0.0.1:4000/preview/des_25677b37be",
+            "performance": 99,
+            "accessibility": 100,
+            "seo": 100,
+            "bestPractices": 100,
+            "source": "local preview"
+          },
+          "applied": [
+            "repeat_atc",
+            "faq_near_end",
+            "specs_table",
+            "gap:comparison",
+            "sticky_atc",
+            "atc_above_fold_mobile",
+            "cod_near_atc",
+            "delivery_estimate",
+            "returns",
+            "compare_at_discount"
+          ],
+          "overflow": {
+            "360": false,
+            "768": false,
+            "1440": false
+          },
+          "atcAllVariants": {
+            "360": {
+              "ok": 10,
+              "tried": 10,
+              "fails": []
+            },
+            "1440": {
+              "ok": 10,
+              "tried": 10,
+              "fails": []
+            }
+          },
+          "atcAboveFold360": true,
+          "atcTop360": 494,
+          "stickyAfterScroll": true
+        },
+        {
+          "id": "des_db0a80c869",
+          "name": "Story led",
+          "suffix": "lp-bottoms-45ff-2",
+          "fingerprint": {
+            "direction": "story",
+            "heroType": "overlay",
+            "sectionOrder": [
+              "hero",
+              "trust_bar",
+              "story",
+              "gallery",
+              "benefits",
+              "faq",
+              "specs",
+              "cta",
+              "sticky_atc"
+            ],
+            "colorMode": "light",
+            "atcPlacement": "hero+end+sticky",
+            "density": "comfortable",
+            "typeScale": "editorial",
+            "imageTreatment": "full-bleed",
+            "benefitLayout": "list_image",
+            "faqStyle": "open"
+          },
+          "diversity": {
+            "minHistory": 0.498,
+            "nearest": "Story led",
+            "passed": true
+          },
+          "seo": {
+            "SEO": 100,
+            "AEO": 100,
+            "GEO": 93
+          },
+          "lighthouse": {
+            "url": "http://127.0.0.1:4000/preview/des_db0a80c869",
+            "performance": 99,
+            "accessibility": 100,
+            "seo": 100,
+            "bestPractices": 100,
+            "source": "local preview"
+          },
+          "applied": [
+            "repeat_atc",
+            "faq_near_end",
+            "specs_table",
+            "sticky_atc",
+            "atc_above_fold_mobile",
+            "cod_near_atc",
+            "delivery_estimate",
+            "returns",
+            "compare_at_discount"
+          ],
+          "overflow": {
+            "360": false,
+            "768": false,
+            "1440": false
+          },
+          "atcAllVariants": {
+            "360": {
+              "ok": 10,
+              "tried": 10,
+              "fails": []
+            },
+            "1440": {
+              "ok": 10,
+              "tried": 10,
+              "fails": []
+            }
+          },
+          "atcAboveFold360": true,
+          "atcTop360": 474,
+          "stickyAfterScroll": true
+        },
+        {
+          "id": "des_82db589b66",
+          "name": "Facts first (GEO)",
+          "suffix": "lp-bottoms-45ff-3",
+          "fingerprint": {
+            "direction": "spec_sheet",
+            "heroType": "stacked",
+            "sectionOrder": [
+              "hero",
+              "specs",
+              "benefits",
+              "faq",
+              "cta",
+              "gallery",
+              "sticky_atc"
+            ],
+            "colorMode": "dark",
+            "atcPlacement": "hero+end+sticky",
+            "density": "comfortable",
+            "typeScale": "compact",
+            "imageTreatment": "centered",
+            "benefitLayout": "list_image",
+            "faqStyle": "accordion"
+          },
+          "diversity": {
+            "minHistory": 0.44,
+            "nearest": "Social proof heavy",
+            "passed": true
+          },
+          "seo": {
+            "SEO": 100,
+            "AEO": 100,
+            "GEO": 93
+          },
+          "lighthouse": {
+            "url": "http://127.0.0.1:4000/preview/des_82db589b66",
+            "performance": 99,
+            "accessibility": 100,
+            "seo": 100,
+            "bestPractices": 100,
+            "source": "local preview"
+          },
+          "applied": [
+            "repeat_atc",
+            "faq_near_end",
+            "specs_table",
+            "sticky_atc",
+            "atc_above_fold_mobile",
+            "cod_near_atc",
+            "delivery_estimate",
+            "returns",
+            "compare_at_discount"
+          ],
+          "overflow": {
+            "360": false,
+            "768": false,
+            "1440": false
+          },
+          "atcAllVariants": {
+            "360": {
+              "ok": 10,
+              "tried": 10,
+              "fails": []
+            },
+            "1440": {
+              "ok": 10,
+              "tried": 10,
+              "fails": []
+            }
+          },
+          "atcAboveFold360": true,
+          "atcTop360": 494,
+          "stickyAfterScroll": true
+        },
+        {
+          "id": "des_b5f9993d61",
+          "name": "Social proof heavy",
+          "suffix": "lp-bottoms-45ff-4",
+          "fingerprint": {
+            "direction": "social_proof",
+            "heroType": "split_right",
+            "sectionOrder": [
+              "hero",
+              "gallery",
+              "benefits",
+              "cta",
+              "faq",
+              "specs",
+              "sticky_atc"
+            ],
+            "colorMode": "bold",
+            "atcPlacement": "hero+mid+sticky",
+            "density": "airy",
+            "typeScale": "standard",
+            "imageTreatment": "split",
+            "benefitLayout": "grid",
+            "faqStyle": "accordion"
+          },
+          "diversity": {
+            "minHistory": 0.463,
+            "nearest": "Social proof heavy",
+            "passed": true
+          },
+          "seo": {
+            "SEO": 100,
+            "AEO": 100,
+            "GEO": 93
+          },
+          "lighthouse": {
+            "url": "http://127.0.0.1:4000/preview/des_b5f9993d61",
+            "performance": 99,
+            "accessibility": 100,
+            "seo": 100,
+            "bestPractices": 100,
+            "source": "local preview"
+          },
+          "applied": [
+            "repeat_atc",
+            "faq_near_end",
+            "specs_table",
+            "sticky_atc",
+            "atc_above_fold_mobile",
+            "cod_near_atc",
+            "delivery_estimate",
+            "returns",
+            "compare_at_discount"
+          ],
+          "overflow": {
+            "360": false,
+            "768": false,
+            "1440": false
+          },
+          "atcAllVariants": {
+            "360": {
+              "ok": 10,
+              "tried": 10,
+              "fails": []
+            },
+            "1440": {
+              "ok": 10,
+              "tried": 10,
+              "fails": []
+            }
+          },
+          "atcAboveFold360": true,
+          "atcTop360": 497,
+          "stickyAfterScroll": true
+        }
+      ]
+    },
+    {
+      "url": "http://localhost:4100/products/pearl-drop-earrings",
+      "runId": "run_5beef43eeb",
+      "title": "Pearl Drop Earrings",
+      "category": "jewellery",
+      "group": "accessories",
+      "competitors": 10,
+      "learnings": 25,
+      "designs": [
+        {
+          "id": "des_8738523af1",
+          "name": "Story led",
+          "suffix": "lp-jewellery-5bee-1",
+          "fingerprint": {
+            "direction": "story",
+            "heroType": "split_right",
+            "sectionOrder": [
+              "hero",
+              "story",
+              "gallery",
+              "benefits",
+              "reviews",
+              "faq",
+              "cta",
+              "specs",
+              "sticky_atc"
+            ],
+            "colorMode": "light",
+            "atcPlacement": "hero+end+sticky",
+            "density": "comfortable",
+            "typeScale": "standard",
+            "imageTreatment": "split",
+            "benefitLayout": "list_image",
+            "faqStyle": "open"
+          },
+          "diversity": {
+            "minHistory": 1,
+            "nearest": null,
+            "passed": true
+          },
+          "seo": {
+            "SEO": 100,
+            "AEO": 100,
+            "GEO": 100
+          },
+          "lighthouse": {
+            "url": "http://127.0.0.1:4000/preview/des_8738523af1",
+            "performance": 99,
+            "accessibility": 100,
+            "seo": 100,
+            "bestPractices": 100,
+            "source": "local preview"
+          },
+          "applied": [
+            "repeat_atc",
+            "faq_near_end",
+            "specs_table",
+            "reviews_after_benefits",
+            "sticky_atc",
+            "atc_above_fold_mobile",
+            "reviews_near_price",
+            "cod_near_atc",
+            "delivery_estimate",
+            "returns",
+            "compare_at_discount"
+          ],
+          "overflow": {
+            "360": false,
+            "768": false,
+            "1440": false
+          },
+          "atcAllVariants": {
+            "360": {
+              "ok": 2,
+              "tried": 2,
+              "fails": []
+            },
+            "1440": {
+              "ok": 2,
+              "tried": 2,
+              "fails": []
+            }
+          },
+          "atcAboveFold360": true,
+          "atcTop360": 477,
+          "stickyAfterScroll": true
+        },
+        {
+          "id": "des_4330baf779",
+          "name": "Benefit grid",
+          "suffix": "lp-jewellery-5bee-2",
+          "fingerprint": {
+            "direction": "benefit_grid",
+            "heroType": "gallery_grid",
+            "sectionOrder": [
+              "hero",
+              "trust_bar",
+              "benefits",
+              "specs",
+              "comparison",
+              "cta",
+              "reviews",
+              "faq",
+              "sticky_atc"
+            ],
+            "colorMode": "bold",
+            "atcPlacement": "hero+end+sticky",
+            "density": "comfortable",
+            "typeScale": "compact",
+            "imageTreatment": "grid",
+            "benefitLayout": "grid",
+            "faqStyle": "centered"
+          },
+          "diversity": {
+            "minHistory": 1,
+            "nearest": null,
+            "passed": true
+          },
+          "seo": {
+            "SEO": 100,
+            "AEO": 100,
+            "GEO": 100
+          },
+          "lighthouse": {
+            "url": "http://127.0.0.1:4000/preview/des_4330baf779",
+            "performance": 99,
+            "accessibility": 100,
+            "seo": 100,
+            "bestPractices": 100,
+            "source": "local preview"
+          },
+          "applied": [
+            "repeat_atc",
+            "faq_near_end",
+            "specs_table",
+            "gap:comparison",
+            "sticky_atc",
+            "atc_above_fold_mobile",
+            "reviews_near_price",
+            "cod_near_atc",
+            "delivery_estimate",
+            "returns",
+            "compare_at_discount"
+          ],
+          "overflow": {
+            "360": false,
+            "768": false,
+            "1440": false
+          },
+          "atcAllVariants": {
+            "360": {
+              "ok": 2,
+              "tried": 2,
+              "fails": []
+            },
+            "1440": {
+              "ok": 2,
+              "tried": 2,
+              "fails": []
+            }
+          },
+          "atcAboveFold360": true,
+          "atcTop360": 474,
+          "stickyAfterScroll": true
+        },
+        {
+          "id": "des_bdf52c76c0",
+          "name": "Social proof heavy",
+          "suffix": "lp-jewellery-5bee-3",
+          "fingerprint": {
+            "direction": "social_proof",
+            "heroType": "split_left",
+            "sectionOrder": [
+              "hero",
+              "reviews",
+              "gallery",
+              "benefits",
+              "cta",
+              "faq",
+              "specs",
+              "sticky_atc"
+            ],
+            "colorMode": "light",
+            "atcPlacement": "hero+mid+sticky",
+            "density": "comfortable",
+            "typeScale": "standard",
+            "imageTreatment": "split",
+            "benefitLayout": "grid",
+            "faqStyle": "centered"
+          },
+          "diversity": {
+            "minHistory": 1,
+            "nearest": null,
+            "passed": true
+          },
+          "seo": {
+            "SEO": 100,
+            "AEO": 100,
+            "GEO": 100
+          },
+          "lighthouse": {
+            "url": "http://127.0.0.1:4000/preview/des_bdf52c76c0",
+            "performance": 99,
+            "accessibility": 100,
+            "seo": 100,
+            "bestPractices": 100,
+            "source": "local preview"
+          },
+          "applied": [
+            "repeat_atc",
+            "faq_near_end",
+            "specs_table",
+            "sticky_atc",
+            "atc_above_fold_mobile",
+            "reviews_near_price",
+            "cod_near_atc",
+            "delivery_estimate",
+            "returns",
+            "compare_at_discount"
+          ],
+          "overflow": {
+            "360": false,
+            "768": false,
+            "1440": false
+          },
+          "atcAllVariants": {
+            "360": {
+              "ok": 2,
+              "tried": 2,
+              "fails": []
+            },
+            "1440": {
+              "ok": 2,
+              "tried": 2,
+              "fails": []
+            }
+          },
+          "atcAboveFold360": true,
+          "atcTop360": 477,
+          "stickyAfterScroll": true
+        },
+        {
+          "id": "des_e62ad646ef",
+          "name": "Offer led",
+          "suffix": "lp-jewellery-5bee-4",
+          "fingerprint": {
+            "direction": "offer_led",
+            "heroType": "stacked",
+            "sectionOrder": [
+              "hero",
+              "offer",
+              "benefits",
+              "cta",
+              "faq",
+              "specs",
+              "sticky_atc"
+            ],
+            "colorMode": "tint",
+            "atcPlacement": "hero+offer+mid+sticky",
+            "density": "comfortable",
+            "typeScale": "standard",
+            "imageTreatment": "centered",
+            "benefitLayout": "grid",
+            "faqStyle": "accordion"
+          },
+          "diversity": {
+            "minHistory": 1,
+            "nearest": null,
+            "passed": true
+          },
+          "seo": {
+            "SEO": 100,
+            "AEO": 100,
+            "GEO": 100
+          },
+          "lighthouse": {
+            "url": "http://127.0.0.1:4000/preview/des_e62ad646ef",
+            "performance": 99,
+            "accessibility": 96,
+            "seo": 100,
+            "bestPractices": 100,
+            "source": "local preview"
+          },
+          "applied": [
+            "repeat_atc",
+            "faq_near_end",
+            "specs_table",
+            "sticky_atc",
+            "atc_above_fold_mobile",
+            "reviews_near_price",
+            "cod_near_atc",
+            "delivery_estimate",
+            "returns",
+            "compare_at_discount"
+          ],
+          "overflow": {
+            "360": false,
+            "768": false,
+            "1440": false
+          },
+          "atcAllVariants": {
+            "360": {
+              "ok": 2,
+              "tried": 2,
+              "fails": []
+            },
+            "1440": {
+              "ok": 2,
+              "tried": 2,
+              "fails": []
+            }
+          },
+          "atcAboveFold360": true,
+          "atcTop360": 477,
+          "stickyAfterScroll": true
+        }
+      ]
+    },
+    {
+      "url": "http://localhost:4100/products/everyday-laptop-backpack",
+      "runId": "run_2d20f5f701",
+      "title": "Everyday Laptop Backpack 22L",
+      "category": "bags",
+      "group": "accessories",
+      "competitors": 10,
+      "learnings": 25,
+      "designs": [
+        {
+          "id": "des_7e2fa43fce",
+          "name": "Facts first (GEO)",
+          "suffix": "lp-bags-2d20-1",
+          "fingerprint": {
+            "direction": "spec_sheet",
+            "heroType": "editorial",
+            "sectionOrder": [
+              "hero",
+              "trust_bar",
+              "specs",
+              "faq",
+              "story",
+              "cta",
+              "sticky_atc"
+            ],
+            "colorMode": "dark",
+            "atcPlacement": "hero+end+sticky",
+            "density": "comfortable",
+            "typeScale": "editorial",
+            "imageTreatment": "editorial",
+            "benefitLayout": "numbered",
+            "faqStyle": "open"
+          },
+          "diversity": {
+            "minHistory": 0.679,
+            "nearest": "Benefit grid",
+            "passed": true
+          },
+          "seo": {
+            "SEO": 100,
+            "AEO": 100,
+            "GEO": 100
+          },
+          "lighthouse": {
+            "url": "http://127.0.0.1:4000/preview/des_7e2fa43fce",
+            "performance": 100,
+            "accessibility": 100,
+            "seo": 100,
+            "bestPractices": 100,
+            "source": "local preview"
+          },
+          "applied": [
+            "repeat_atc",
+            "faq_near_end",
+            "specs_table",
+            "sticky_atc",
+            "atc_above_fold_mobile",
+            "reviews_near_price",
+            "cod_near_atc",
+            "delivery_estimate",
+            "returns"
+          ],
+          "overflow": {
+            "360": false,
+            "768": false,
+            "1440": false
+          },
+          "atcAllVariants": {
+            "360": {
+              "ok": 3,
+              "tried": 3,
+              "fails": []
+            },
+            "1440": {
+              "ok": 3,
+              "tried": 3,
+              "fails": []
+            }
+          },
+          "atcAboveFold360": true,
+          "atcTop360": 299,
+          "stickyAfterScroll": true
+        },
+        {
+          "id": "des_118ab6ce3d",
+          "name": "Social proof heavy",
+          "suffix": "lp-bags-2d20-2",
+          "fingerprint": {
+            "direction": "social_proof",
+            "heroType": "stacked",
+            "sectionOrder": [
+              "hero",
+              "gallery",
+              "reviews",
+              "specs",
+              "faq",
+              "cta",
+              "sticky_atc"
+            ],
+            "colorMode": "bold",
+            "atcPlacement": "hero+end+sticky",
+            "density": "comfortable",
+            "typeScale": "editorial",
+            "imageTreatment": "centered",
+            "benefitLayout": "cards",
+            "faqStyle": "open"
+          },
+          "diversity": {
+            "minHistory": 0.579,
+            "nearest": "Story led",
+            "passed": true
+          },
+          "seo": {
+            "SEO": 100,
+            "AEO": 100,
+            "GEO": 100
+          },
+          "lighthouse": {
+            "url": "http://127.0.0.1:4000/preview/des_118ab6ce3d",
+            "performance": 99,
+            "accessibility": 100,
+            "seo": 100,
+            "bestPractices": 100,
+            "source": "local preview"
+          },
+          "applied": [
+            "repeat_atc",
+            "faq_near_end",
+            "specs_table",
+            "sticky_atc",
+            "atc_above_fold_mobile",
+            "reviews_near_price",
+            "cod_near_atc",
+            "delivery_estimate",
+            "returns"
+          ],
+          "overflow": {
+            "360": false,
+            "768": false,
+            "1440": false
+          },
+          "atcAllVariants": {
+            "360": {
+              "ok": 3,
+              "tried": 3,
+              "fails": []
+            },
+            "1440": {
+              "ok": 3,
+              "tried": 3,
+              "fails": []
+            }
+          },
+          "atcAboveFold360": true,
+          "atcTop360": 518,
+          "stickyAfterScroll": true
+        },
+        {
+          "id": "des_0861326e3e",
+          "name": "Offer led",
+          "suffix": "lp-bags-2d20-3",
+          "fingerprint": {
+            "direction": "offer_led",
+            "heroType": "split_left",
+            "sectionOrder": [
+              "hero",
+              "trust_bar",
+              "offer",
+              "specs",
+              "reviews",
+              "faq",
+              "cta",
+              "sticky_atc"
+            ],
+            "colorMode": "bold",
+            "atcPlacement": "hero+offer+end+sticky",
+            "density": "comfortable",
+            "typeScale": "standard",
+            "imageTreatment": "split",
+            "benefitLayout": "numbered",
+            "faqStyle": "accordion"
+          },
+          "diversity": {
+            "minHistory": 0.551,
+            "nearest": "Social proof heavy",
+            "passed": true
+          },
+          "seo": {
+            "SEO": 100,
+            "AEO": 100,
+            "GEO": 100
+          },
+          "lighthouse": {
+            "url": "http://127.0.0.1:4000/preview/des_0861326e3e",
+            "performance": 99,
+            "accessibility": 100,
+            "seo": 100,
+            "bestPractices": 100,
+            "source": "local preview"
+          },
+          "applied": [
+            "repeat_atc",
+            "faq_near_end",
+            "specs_table",
+            "sticky_atc",
+            "atc_above_fold_mobile",
+            "reviews_near_price",
+            "cod_near_atc",
+            "delivery_estimate",
+            "returns"
+          ],
+          "overflow": {
+            "360": false,
+            "768": false,
+            "1440": false
+          },
+          "atcAllVariants": {
+            "360": {
+              "ok": 3,
+              "tried": 3,
+              "fails": []
+            },
+            "1440": {
+              "ok": 3,
+              "tried": 3,
+              "fails": []
+            }
+          },
+          "atcAboveFold360": true,
+          "atcTop360": 505,
+          "stickyAfterScroll": true
+        },
+        {
+          "id": "des_88dfbe42c8",
+          "name": "Story led",
+          "suffix": "lp-bags-2d20-4",
+          "fingerprint": {
+            "direction": "story",
+            "heroType": "overlay",
+            "sectionOrder": [
+              "hero",
+              "trust_bar",
+              "story",
+              "gallery",
+              "benefits",
+              "reviews",
+              "faq",
+              "specs",
+              "cta",
+              "sticky_atc"
+            ],
+            "colorMode": "tint",
+            "atcPlacement": "hero+end+sticky",
+            "density": "comfortable",
+            "typeScale": "standard",
+            "imageTreatment": "full-bleed",
+            "benefitLayout": "numbered",
+            "faqStyle": "centered"
+          },
+          "diversity": {
+            "minHistory": 0.397,
+            "nearest": "Story led",
+            "passed": true
+          },
+          "seo": {
+            "SEO": 100,
+            "AEO": 100,
+            "GEO": 100
+          },
+          "lighthouse": {
+            "url": "http://127.0.0.1:4000/preview/des_88dfbe42c8",
+            "performance": 99,
+            "accessibility": 100,
+            "seo": 100,
+            "bestPractices": 100,
+            "source": "local preview"
+          },
+          "applied": [
+            "repeat_atc",
+            "faq_near_end",
+            "specs_table",
+            "sticky_atc",
+            "atc_above_fold_mobile",
+            "reviews_near_price",
+            "cod_near_atc",
+            "delivery_estimate",
+            "returns"
+          ],
+          "overflow": {
+            "360": false,
+            "768": false,
+            "1440": false
+          },
+          "atcAllVariants": {
+            "360": {
+              "ok": 3,
+              "tried": 3,
+              "fails": []
+            },
+            "1440": {
+              "ok": 3,
+              "tried": 3,
+              "fails": []
+            }
+          },
+          "atcAboveFold360": true,
+          "atcTop360": 475,
+          "stickyAfterScroll": true
+        }
+      ]
+    },
+    {
+      "url": "http://localhost:4100/products/heavyweight-oversized-tee (run 2)",
+      "runId": "run_3b61af6bbd",
+      "title": "Heavyweight Oversized Tee",
+      "category": "t-shirts",
+      "group": "clothing",
+      "competitors": 10,
+      "learnings": 25,
+      "designs": [
+        {
+          "id": "des_26a3abc2af",
+          "name": "Offer led",
+          "suffix": "lp-t-shirts-3b61-1",
+          "fingerprint": {
+            "direction": "offer_led",
+            "heroType": "gallery_grid",
+            "sectionOrder": [
+              "hero",
+              "trust_bar",
+              "offer",
+              "specs",
+              "reviews",
+              "faq",
+              "cta",
+              "sticky_atc"
+            ],
+            "colorMode": "light",
+            "atcPlacement": "hero+offer+end+sticky",
+            "density": "comfortable",
+            "typeScale": "standard",
+            "imageTreatment": "grid",
+            "benefitLayout": "grid",
+            "faqStyle": "centered"
+          },
+          "diversity": {
+            "minHistory": 0.563,
+            "nearest": "Offer led",
+            "passed": true
+          },
+          "seo": {
+            "SEO": 100,
+            "AEO": 100,
+            "GEO": 100
+          },
+          "lighthouse": {
+            "url": "http://127.0.0.1:4000/preview/des_26a3abc2af",
+            "performance": 99,
+            "accessibility": 96,
+            "seo": 100,
+            "bestPractices": 100,
+            "source": "local preview"
+          },
+          "applied": [
+            "repeat_atc",
+            "faq_near_end",
+            "specs_table",
+            "sticky_atc",
+            "atc_above_fold_mobile",
+            "reviews_near_price",
+            "cod_near_atc",
+            "delivery_estimate",
+            "returns",
+            "compare_at_discount"
+          ],
+          "overflow": {
+            "360": false,
+            "768": false,
+            "1440": false
+          },
+          "atcAllVariants": {
+            "360": {
+              "ok": 15,
+              "tried": 15,
+              "fails": []
+            },
+            "1440": {
+              "ok": 15,
+              "tried": 15,
+              "fails": []
+            }
+          },
+          "atcAboveFold360": true,
+          "atcTop360": 549,
+          "stickyAfterScroll": true
+        },
+        {
+          "id": "des_bfe86d30f0",
+          "name": "Facts first (GEO)",
+          "suffix": "lp-t-shirts-3b61-2",
+          "fingerprint": {
+            "direction": "spec_sheet",
+            "heroType": "editorial",
+            "sectionOrder": [
+              "hero",
+              "trust_bar",
+              "specs",
+              "faq",
+              "story",
+              "cta",
+              "sticky_atc"
+            ],
+            "colorMode": "light",
+            "atcPlacement": "hero+end+sticky",
+            "density": "airy",
+            "typeScale": "editorial",
+            "imageTreatment": "editorial",
+            "benefitLayout": "numbered",
+            "faqStyle": "centered"
+          },
+          "diversity": {
+            "minHistory": 0.56,
+            "nearest": "Facts first (GEO)",
+            "passed": true
+          },
+          "seo": {
+            "SEO": 100,
+            "AEO": 100,
+            "GEO": 100
+          },
+          "lighthouse": {
+            "url": "http://127.0.0.1:4000/preview/des_bfe86d30f0",
+            "performance": 99,
+            "accessibility": 100,
+            "seo": 100,
+            "bestPractices": 100,
+            "source": "local preview"
+          },
+          "applied": [
+            "repeat_atc",
+            "faq_near_end",
+            "specs_table",
+            "sticky_atc",
+            "atc_above_fold_mobile",
+            "reviews_near_price",
+            "cod_near_atc",
+            "delivery_estimate",
+            "returns",
+            "compare_at_discount"
+          ],
+          "overflow": {
+            "360": false,
+            "768": false,
+            "1440": false
+          },
+          "atcAllVariants": {
+            "360": {
+              "ok": 15,
+              "tried": 15,
+              "fails": []
+            },
+            "1440": {
+              "ok": 15,
+              "tried": 15,
+              "fails": []
+            }
+          },
+          "atcAboveFold360": true,
+          "atcTop360": 368,
+          "stickyAfterScroll": true
+        },
+        {
+          "id": "des_e85369ec84",
+          "name": "Social proof heavy",
+          "suffix": "lp-t-shirts-3b61-3",
+          "fingerprint": {
+            "direction": "social_proof",
+            "heroType": "stacked",
+            "sectionOrder": [
+              "hero",
+              "reviews",
+              "gallery",
+              "benefits",
+              "cta",
+              "faq",
+              "specs",
+              "sticky_atc"
+            ],
+            "colorMode": "tint",
+            "atcPlacement": "hero+mid+sticky",
+            "density": "comfortable",
+            "typeScale": "editorial",
+            "imageTreatment": "centered",
+            "benefitLayout": "grid",
+            "faqStyle": "centered"
+          },
+          "diversity": {
+            "minHistory": 0.384,
+            "nearest": "Social proof heavy",
+            "passed": true
+          },
+          "seo": {
+            "SEO": 100,
+            "AEO": 100,
+            "GEO": 100
+          },
+          "lighthouse": {
+            "url": "http://127.0.0.1:4000/preview/des_e85369ec84",
+            "performance": 99,
+            "accessibility": 100,
+            "seo": 100,
+            "bestPractices": 100,
+            "source": "local preview"
+          },
+          "applied": [
+            "repeat_atc",
+            "faq_near_end",
+            "specs_table",
+            "sticky_atc",
+            "atc_above_fold_mobile",
+            "reviews_near_price",
+            "cod_near_atc",
+            "delivery_estimate",
+            "returns",
+            "compare_at_discount"
+          ],
+          "overflow": {
+            "360": false,
+            "768": false,
+            "1440": false
+          },
+          "atcAllVariants": {
+            "360": {
+              "ok": 15,
+              "tried": 15,
+              "fails": []
+            },
+            "1440": {
+              "ok": 15,
+              "tried": 15,
+              "fails": []
+            }
+          },
+          "atcAboveFold360": true,
+          "atcTop360": 561,
+          "stickyAfterScroll": true
+        },
+        {
+          "id": "des_826a93a30d",
+          "name": "Benefit grid",
+          "suffix": "lp-t-shirts-3b61-4",
+          "fingerprint": {
+            "direction": "benefit_grid",
+            "heroType": "split_left",
+            "sectionOrder": [
+              "hero",
+              "trust_bar",
+              "benefits",
+              "specs",
+              "comparison",
+              "cta",
+              "reviews",
+              "faq",
+              "sticky_atc"
+            ],
+            "colorMode": "bold",
+            "atcPlacement": "hero+end+sticky",
+            "density": "airy",
+            "typeScale": "standard",
+            "imageTreatment": "split",
+            "benefitLayout": "grid",
+            "faqStyle": "accordion"
+          },
+          "diversity": {
+            "minHistory": 0.351,
+            "nearest": "Benefit grid",
+            "passed": true
+          },
+          "seo": {
+            "SEO": 100,
+            "AEO": 100,
+            "GEO": 100
+          },
+          "lighthouse": {
+            "url": "http://127.0.0.1:4000/preview/des_826a93a30d",
+            "performance": 99,
+            "accessibility": 100,
+            "seo": 100,
+            "bestPractices": 100,
+            "source": "local preview"
+          },
+          "applied": [
+            "repeat_atc",
+            "faq_near_end",
+            "specs_table",
+            "gap:comparison",
+            "sticky_atc",
+            "atc_above_fold_mobile",
+            "reviews_near_price",
+            "cod_near_atc",
+            "delivery_estimate",
+            "returns",
+            "compare_at_discount"
+          ],
+          "overflow": {
+            "360": false,
+            "768": false,
+            "1440": false
+          },
+          "atcAllVariants": {
+            "360": {
+              "ok": 15,
+              "tried": 15,
+              "fails": []
+            },
+            "1440": {
+              "ok": 15,
+              "tried": 15,
+              "fails": []
+            }
+          },
+          "atcAboveFold360": true,
+          "atcTop360": 549,
+          "stickyAfterScroll": true
+        }
+      ]
+    }
+  ],
+  "secondRunVsFirst": [
+    {
+      "name": "Offer led",
+      "closestInRun1": 0.563
+    },
+    {
+      "name": "Facts first (GEO)",
+      "closestInRun1": 0.595
+    },
+    {
+      "name": "Social proof heavy",
+      "closestInRun1": 0.384
+    },
+    {
+      "name": "Benefit grid",
+      "closestInRun1": 0.351
+    }
+  ]
+}

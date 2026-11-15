@@ -1,0 +1,12 @@
+{%- comment -%} Price with compare-at + saving. Params: p {%- endcomment -%}
+{%- assign current = p.selected_or_first_available_variant -%}
+<div class="lp-price">
+  <span class="lp-price__now" data-lp-price>{{ current.price | money }}</span>
+  {%- if current.compare_at_price > current.price -%}
+    {%- assign save = current.compare_at_price | minus: current.price | times: 100 | divided_by: current.compare_at_price | floor -%}
+    <s class="lp-price__was" data-lp-compare><span class="lp-sr">Regular price</span>{{ current.compare_at_price | money }}</s>
+    <span class="lp-price__save" data-lp-save>{{ save }}% off</span>
+  {%- else -%}
+    <s class="lp-price__was" data-lp-compare hidden></s><span class="lp-price__save" data-lp-save hidden></span>
+  {%- endif -%}
+</div>

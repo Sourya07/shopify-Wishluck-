@@ -1,0 +1,20 @@
+{%- comment -%}
+  Responsive image with product-image fallback.
+  Params: image (image_picker value), p (product), index (product media index, 1-based), sizes, class, eager, ratio
+{%- endcomment -%}
+{%- assign img = image -%}
+{%- if img == blank and p != blank -%}
+  {%- assign idx = index | default: 1 | minus: 1 -%}
+  {%- if idx >= p.media.size -%}{%- assign idx = 0 -%}{%- endif -%}
+  {%- assign img = p.media[idx].preview_image -%}
+{%- endif -%}
+{%- if img != blank -%}
+  {%- assign alt = img.alt | default: p.title | default: '' -%}
+  {%- if eager -%}
+    {{ img | image_url: width: 1600 | image_tag: widths: '360,540,720,1000,1300,1600', sizes: sizes, loading: 'eager', class: class, alt: alt }}
+  {%- else -%}
+    {{ img | image_url: width: 1300 | image_tag: widths: '360,540,720,1000,1300', sizes: sizes, loading: 'lazy', class: class, alt: alt }}
+  {%- endif -%}
+{%- else -%}
+  {{ 'product-1' | placeholder_svg_tag: 'lp-placeholder' }}
+{%- endif -%}

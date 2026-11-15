@@ -1,0 +1,11 @@
+{%- comment -%} Star rating. Usage: {% render 'lp-stars', value: 4.5 %} {%- endcomment -%}
+{%- assign v = value | times: 1.0 -%}
+<span class="lp-stars" aria-hidden="true">
+{%- for i in (1..5) -%}
+  {%- assign prev = i | minus: 1 -%}
+  {%- if v >= i -%}<svg viewBox="0 0 24 24"><path fill="currentColor" d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>
+  {%- elsif v > prev -%}<svg viewBox="0 0 24 24"><defs><linearGradient id="lph{{ i }}"><stop offset="50%" stop-color="currentColor"/><stop offset="50%" stop-color="currentColor" stop-opacity=".25"/></linearGradient></defs><path fill="url(#lph{{ i }})" d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>
+  {%- else -%}<svg viewBox="0 0 24 24"><path fill="currentColor" opacity=".25" d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>
+  {%- endif -%}
+{%- endfor -%}
+</span>

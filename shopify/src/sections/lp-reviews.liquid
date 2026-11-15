@@ -1,0 +1,86 @@
+{%- comment -%} LP Builder · Reviews (real reviews only, or drop in a reviews app block) {%- endcomment -%}
+{{ 'lp-base.css' | asset_url | stylesheet_tag }}
+{%- assign p = section.settings.product | default: product -%}
+{%- assign rating_value = section.settings.rating_value | plus: 0 -%}
+{%- assign rating_count = section.settings.rating_count | plus: 0 -%}
+{%- if rating_value == 0 and p.metafields.reviews.rating.value != blank -%}
+  {%- assign rating_value = p.metafields.reviews.rating.value.rating | plus: 0 -%}
+  {%- assign rating_count = p.metafields.reviews.rating_count.value | plus: 0 -%}
+{%- endif -%}
+__STYLE__
+<div id="lp-{{ section.id }}" class="lp lp-reviews lp-reviews--{{ section.settings.layout }}">
+  <span id="lp-reviews"></span>
+  <div class="lp-wrap">
+    <div class="lp-head lp-center">
+      {%- if section.settings.eyebrow != blank -%}<span class="lp-eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+      <h2>{{ section.settings.heading }}</h2>
+      {%- if rating_value > 0 and rating_count > 0 -%}
+        <div class="lp-reviews__agg">{% render 'lp-stars', value: rating_value %}<strong>{{ rating_value }} out of 5</strong><span class="lp-muted">based on {{ rating_count }} reviews</span></div>
+      {%- endif -%}
+    </div>
+    <div class="lp-reviews__list">
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when '@app' -%}<div class="lp-reviews__app">{% render block %}</div>
+          {%- when 'review' -%}
+            <figure class="lp-review" {{ block.shopify_attributes }}>
+              {%- if block.settings.image != blank -%}{{ block.settings.image | image_url: width: 600 | image_tag: loading: 'lazy', class: 'lp-review__img', alt: block.settings.author, widths: '300,600', sizes: '(min-width: 750px) 33vw, 90vw' }}{%- endif -%}
+              {%- if block.settings.rating > 0 -%}<div>{% render 'lp-stars', value: block.settings.rating %}<span class="lp-sr">{{ block.settings.rating }} out of 5</span></div>{%- endif -%}
+              {%- if block.settings.title != blank -%}<h3>{{ block.settings.title }}</h3>{%- endif -%}
+              <blockquote>{{ block.settings.text }}</blockquote>
+              <figcaption><strong>{{ block.settings.author }}</strong>{% if block.settings.verified %} · <span class="lp-muted">Verified buyer</span>{% endif %}</figcaption>
+            </figure>
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+<style>
+.lp-reviews__agg{display:flex;flex-wrap:wrap;gap:.5em;align-items:center;justify-content:center;margin-top:.5em}
+.lp-reviews__list{display:grid;gap:18px}
+.lp-review{margin:0;padding:22px;border-radius:var(--lp-radius);background:color-mix(in srgb,var(--lp-fg) 5%,var(--lp-bg));display:flex;flex-direction:column;gap:.6em}
+.lp-review blockquote{margin:0;font-size:1rem}
+.lp-review blockquote p{margin:0}
+.lp-review h3{margin:0;font-size:1.02rem}
+.lp-review figcaption{font-size:.88rem;margin-top:auto}
+.lp-review__img{border-radius:calc(var(--lp-radius)*.7);aspect-ratio:1;object-fit:cover;width:100%}
+.lp-reviews__app{grid-column:1/-1}
+@media(min-width:750px){.lp-reviews--grid .lp-reviews__list{grid-template-columns:repeat(3,1fr)}}
+.lp-reviews--carousel .lp-reviews__list{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px}
+.lp-reviews--carousel .lp-review{flex:0 0 min(85%,360px);scroll-snap-align:start}
+.lp-reviews--wall .lp-reviews__list{display:block;columns:1;column-gap:18px}
+.lp-reviews--wall .lp-review{break-inside:avoid;margin-bottom:18px}
+@media(min-width:750px){.lp-reviews--wall .lp-reviews__list{columns:3}}
+.lp-reviews--spotlight .lp-reviews__list{max-width:820px;margin:0 auto}
+.lp-reviews--spotlight .lp-review{background:none;text-align:center;align-items:center}
+.lp-reviews--spotlight .lp-review:first-child blockquote{font:var(--lp-hw) calc(1.5rem*var(--lp-h-scale,1))/1.35 var(--lp-hf)}
+</style>
+{% schema %}
+{
+  "name": "LP · Reviews",
+  "tag": "section",
+  "settings": [
+    { "type": "product", "id": "product", "label": "Product", "info": "Only needed outside product templates." },
+    { "type": "select", "id": "layout", "label": "Layout", "default": "grid", "options": [
+      { "value": "grid", "label": "Grid" }, { "value": "carousel", "label": "Swipe carousel" }, { "value": "wall", "label": "Review wall" }, { "value": "spotlight", "label": "Spotlight quote" }
+    ]},
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "What customers say" },
+    { "type": "text", "id": "rating_value", "label": "Average rating", "info": "Real data only. Leave empty to use the reviews app metafield." },
+    { "type": "text", "id": "rating_count", "label": "Number of reviews" },
+    "__COMMON__"
+  ],
+  "blocks": [
+    { "type": "@app" },
+    { "type": "review", "name": "Review", "settings": [
+      { "type": "text", "id": "author", "label": "Name", "default": "Customer" },
+      { "type": "range", "id": "rating", "label": "Rating", "min": 0, "max": 5, "step": 1, "default": 5 },
+      { "type": "text", "id": "title", "label": "Title" },
+      { "type": "richtext", "id": "text", "label": "Review", "default": "<p>Paste a real customer review.</p>" },
+      { "type": "image_picker", "id": "image", "label": "Customer photo" },
+      { "type": "checkbox", "id": "verified", "label": "Verified buyer", "default": true }
+    ]}
+  ],
+  "presets": [ { "name": "LP · Reviews" } ]
+}
+{% endschema %}

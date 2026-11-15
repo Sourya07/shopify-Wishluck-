@@ -1,0 +1,87 @@
+{%- comment -%} LP Builder · Benefits (blocks) {%- endcomment -%}
+{{ 'lp-base.css' | asset_url | stylesheet_tag }}
+{%- assign p = section.settings.product | default: product -%}
+__STYLE__
+<div id="lp-{{ section.id }}" class="lp lp-benefits lp-benefits--{{ section.settings.layout }}">
+  <div class="lp-wrap">
+    <div class="lp-head{% if section.settings.align == 'left' %} lp-head--left{% else %} lp-center{% endif %}">
+      {%- if section.settings.eyebrow != blank -%}<span class="lp-eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+      {%- if section.settings.heading != blank -%}<h2>{{ section.settings.heading }}</h2>{%- endif -%}
+      {%- if section.settings.intro != blank -%}<div class="lp-muted">{{ section.settings.intro }}</div>{%- endif -%}
+    </div>
+    <div class="lp-benefits__body">
+      {%- if section.settings.layout == 'list_image' -%}
+        <div class="lp-benefits__media">{% render 'lp-image', image: section.settings.image, p: p, index: section.settings.product_image, sizes: '(min-width: 990px) 45vw, 100vw', class: 'lp-benefits__img' %}</div>
+      {%- endif -%}
+      <ul class="lp-benefits__list" style="--cols:{{ section.settings.columns }}">
+        {%- for block in section.blocks -%}
+          <li class="lp-benefit" {{ block.shopify_attributes }}>
+            {%- if block.settings.image != blank -%}
+              {{ block.settings.image | image_url: width: 160 | image_tag: loading: 'lazy', class: 'lp-benefit__pic', alt: block.settings.title, width: 56, height: 56 }}
+            {%- elsif section.settings.layout == 'numbered' -%}
+              <span class="lp-benefit__num">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
+            {%- elsif block.settings.icon != 'none' -%}
+              <span class="lp-benefit__icon">{% render 'lp-icon', name: block.settings.icon %}</span>
+            {%- endif -%}
+            <div>
+              <h3>{{ block.settings.title }}</h3>
+              {%- if block.settings.text != blank -%}<div class="lp-muted">{{ block.settings.text }}</div>{%- endif -%}
+            </div>
+          </li>
+        {%- endfor -%}
+      </ul>
+    </div>
+    {%- if section.settings.button_label != blank -%}<p class="lp-center" style="margin-top:2rem"><a class="lp-btn" href="#lp-buy">{{ section.settings.button_label }}</a></p>{%- endif -%}
+  </div>
+</div>
+<style>
+.lp-benefits__list{list-style:none;margin:0;padding:0;display:grid;gap:18px;grid-template-columns:1fr}
+.lp-benefit{display:flex;gap:14px;align-items:flex-start}
+.lp-benefit h3{margin:0 0 .25em;font-size:calc(1.08rem*var(--lp-h-scale,1))}
+.lp-benefit .lp-muted p{margin:0}
+.lp-benefit__icon{display:grid;place-items:center;width:46px;height:46px;border-radius:50%;background:color-mix(in srgb,var(--lp-accent) 14%,transparent);color:var(--lp-accent);flex:none}
+.lp-benefit__num{font:var(--lp-hw) 1.6rem/1 var(--lp-hf);color:var(--lp-accent);min-width:2ch}
+.lp-benefit__pic{width:56px;height:56px;object-fit:cover;border-radius:12px}
+.lp-benefits--cards .lp-benefit{flex-direction:column;background:color-mix(in srgb,var(--lp-fg) 4%,var(--lp-bg));padding:22px;border-radius:var(--lp-radius)}
+.lp-benefits--grid .lp-benefit{flex-direction:column;align-items:center;text-align:center}
+.lp-benefits__media{border-radius:var(--lp-radius);overflow:hidden;aspect-ratio:1}
+.lp-benefits__img{width:100%;height:100%;object-fit:cover}
+@media(min-width:750px){
+  .lp-benefits--grid .lp-benefits__list,.lp-benefits--cards .lp-benefits__list{grid-template-columns:repeat(var(--cols),1fr);gap:28px}
+  .lp-benefits--numbered .lp-benefits__list{grid-template-columns:1fr 1fr;gap:28px 48px}
+  .lp-benefits--list_image .lp-benefits__body{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+}
+@media(min-width:750px) and (max-width:989px){.lp-benefits--grid .lp-benefits__list,.lp-benefits--cards .lp-benefits__list{grid-template-columns:1fr 1fr}}
+</style>
+{% schema %}
+{
+  "name": "LP · Benefits",
+  "tag": "section",
+  "settings": [
+    { "type": "product", "id": "product", "label": "Product", "info": "Only needed outside product templates." },
+    { "type": "select", "id": "layout", "label": "Layout", "default": "grid", "options": [
+      { "value": "grid", "label": "Icon grid" }, { "value": "cards", "label": "Cards" }, { "value": "list_image", "label": "List beside image" }, { "value": "numbered", "label": "Numbered" }
+    ]},
+    { "type": "range", "id": "columns", "label": "Columns (desktop)", "min": 2, "max": 4, "step": 1, "default": 3 },
+    { "type": "select", "id": "align", "label": "Heading alignment", "default": "center", "options": [ { "value": "center", "label": "Centre" }, { "value": "left", "label": "Left" } ] },
+    { "type": "image_picker", "id": "image", "label": "Image (list beside image layout)" },
+    { "type": "range", "id": "product_image", "label": "Product image fallback", "min": 1, "max": 10, "step": 1, "default": 3 },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Why you'll love it" },
+    { "type": "richtext", "id": "intro", "label": "Intro" },
+    { "type": "text", "id": "button_label", "label": "Button label", "info": "Scrolls to add to cart. Leave empty to hide." },
+    "__COMMON__"
+  ],
+  "blocks": [ { "type": "benefit", "name": "Benefit", "settings": [
+    { "type": "select", "id": "icon", "label": "Icon", "default": "check", "options": [
+      { "value": "none", "label": "None" }, { "value": "check", "label": "Check" }, { "value": "leaf", "label": "Leaf" }, { "value": "feather", "label": "Feather / light" }, { "value": "droplet", "label": "Droplet" },
+      { "value": "sun", "label": "Sun" }, { "value": "shield", "label": "Shield" }, { "value": "ruler", "label": "Fit / size" }, { "value": "heart", "label": "Heart" }, { "value": "sparkle", "label": "Sparkle" },
+      { "value": "bolt", "label": "Bolt" }, { "value": "recycle", "label": "Recycle" }, { "value": "box", "label": "Box" }, { "value": "clock", "label": "Clock" }, { "value": "truck", "label": "Truck" }, { "value": "tag", "label": "Tag" }
+    ]},
+    { "type": "image_picker", "id": "image", "label": "Image instead of icon" },
+    { "type": "text", "id": "title", "label": "Title", "default": "Benefit" },
+    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Describe the benefit with a concrete fact.</p>" }
+  ] } ],
+  "presets": [ { "name": "LP · Benefits", "blocks": [ { "type": "benefit" }, { "type": "benefit" }, { "type": "benefit" } ] } ]
+}
+{% endschema %}

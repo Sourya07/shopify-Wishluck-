@@ -1,0 +1,65 @@
+/* Wishluck LP Builder — shared styles for lp-* sections. Every colour/font comes from section settings via CSS vars. */
+.lp{background:var(--lp-bg);color:var(--lp-fg);font-family:var(--lp-bf);font-weight:var(--lp-bw);padding:var(--lp-pt) 0 var(--lp-pb);line-height:1.55;font-size:16px;-webkit-font-smoothing:antialiased}
+.lp *,.lp *::before,.lp *::after{box-sizing:border-box}
+.lp img{max-width:100%;height:auto;display:block}
+.lp-wrap{width:100%;max-width:1240px;margin:0 auto;padding:0 20px}
+@media(min-width:990px){.lp-wrap{padding:0 40px}}
+.lp h1,.lp h2,.lp h3,.lp .lp-h{font-family:var(--lp-hf);font-weight:var(--lp-hw);font-style:var(--lp-hs,normal);color:inherit;margin:0 0 .4em;line-height:1.12;letter-spacing:-.01em}
+.lp h1{font-size:calc(clamp(1.75rem,1.2rem + 2.6vw,3.4rem)*var(--lp-h-scale,1))}
+.lp h2{font-size:calc(clamp(1.5rem,1.1rem + 1.8vw,2.6rem)*var(--lp-h-scale,1))}
+.lp h3{font-size:calc(1.15rem*var(--lp-h-scale,1))}
+.lp p{margin:0 0 1em}
+.lp a{color:inherit}
+.lp-eyebrow{display:inline-block;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--lp-accent);margin-bottom:.8em}
+.lp-muted{color:color-mix(in srgb,var(--lp-fg) 80%,var(--lp-bg))}
+.lp-center{text-align:center}
+.lp-head{max-width:720px;margin:0 auto 2rem}
+.lp-head--left{margin-left:0}
+.lp-btn{display:inline-flex;align-items:center;justify-content:center;gap:.5em;min-height:50px;padding:0 1.6em;border-radius:var(--lp-radius);background:var(--lp-btn);color:var(--lp-btn-fg);border:2px solid var(--lp-btn);font:600 1rem/1 var(--lp-bf);cursor:pointer;text-decoration:none;transition:transform .15s,opacity .15s;width:auto}
+.lp-btn:hover{transform:translateY(-1px)}
+.lp-btn:focus-visible,.lp-pills input:focus-visible+label,.lp-qty button:focus-visible{outline:3px solid var(--lp-accent);outline-offset:2px}
+.lp-btn[disabled]{opacity:.5;cursor:not-allowed;transform:none}
+.lp-btn--outline{background:transparent;color:var(--lp-btn)}
+.lp-btn--block{width:100%}
+.lp-stars{display:inline-flex;gap:2px;color:#f5a623;vertical-align:middle}
+.lp-stars svg{width:16px;height:16px}
+.lp-rating{display:flex;align-items:center;gap:.5em;font-size:.92rem;margin:.2em 0 .6em}
+.lp-rating a{text-underline-offset:3px}
+.lp-icon{width:24px;height:24px;flex:none;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.lp-grid{display:grid;gap:20px}
+.lp{overflow-x:clip}
+.lp-hero__track,.lp-reviews__list,.lp-gallery__list,.lp-compare__scroll,.lp-review,.lp-opt{position:relative}
+.lp-sr{position:absolute!important;left:0;top:0;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* buy box */
+.lp-price{display:flex;flex-wrap:wrap;align-items:baseline;gap:.5em;margin:.3em 0 .6em}
+.lp-price__now{font-size:1.6rem;font-weight:700;font-family:var(--lp-hf)}
+.lp-price__was{color:color-mix(in srgb,var(--lp-fg) 72%,var(--lp-bg));font-size:1.05rem}
+.lp-price__save{background:var(--lp-btn);color:var(--lp-btn-fg);font-size:.78rem;font-weight:700;padding:.25em .6em;border-radius:99px}
+.lp-tax{font-size:.8rem;color:color-mix(in srgb,var(--lp-fg) 78%,var(--lp-bg));margin:-.4em 0 .8em}
+.lp-opt{border:0;padding:0;margin:0 0 .9em}
+.lp-opt legend{font-size:.85rem;font-weight:600;margin-bottom:.4em;padding:0}
+.lp-pills{display:flex;flex-wrap:wrap;gap:8px}
+.lp-pills input{position:absolute;opacity:0;width:1px;height:1px}
+.lp-pills label{min-width:44px;min-height:40px;padding:0 .9em;display:inline-flex;align-items:center;justify-content:center;border:1.5px solid color-mix(in srgb,var(--lp-fg) 30%,transparent);border-radius:var(--lp-radius);cursor:pointer;font-size:.92rem}
+.lp-pills input:checked+label{border-color:var(--lp-fg);background:var(--lp-fg);color:var(--lp-bg)}
+.lp-pills label.is-unavailable{text-decoration:line-through;color:color-mix(in srgb,var(--lp-fg) 74%,var(--lp-bg))}
+.lp-select{width:100%;min-height:46px;padding:0 .8em;border-radius:var(--lp-radius);border:1.5px solid color-mix(in srgb,var(--lp-fg) 30%,transparent);background:var(--lp-bg);color:var(--lp-fg);font:inherit}
+.lp-qty-atc{display:flex;gap:10px;align-items:stretch}
+.lp-qty-atc .lp-btn{flex:1}
+.lp-qty{display:flex;border:1.5px solid color-mix(in srgb,var(--lp-fg) 30%,transparent);border-radius:var(--lp-radius);overflow:hidden}
+.lp-qty button{width:40px;background:none;border:0;color:inherit;font-size:1.2rem;cursor:pointer}
+.lp-qty input{width:42px;text-align:center;border:0;background:none;color:inherit;font:inherit;-moz-appearance:textfield}
+.lp-qty input::-webkit-inner-spin-button{display:none}
+.lp-trust{list-style:none;padding:0;margin:1rem 0 0;display:grid;grid-template-columns:1fr 1fr;gap:10px 14px;font-size:.86rem}
+.lp-trust li{display:flex;gap:.55em;align-items:center}
+.lp-trust .lp-icon{width:20px;height:20px;color:var(--lp-accent)}
+.lp-highlights{list-style:none;padding:0;margin:.4em 0 1em;display:grid;gap:.35em}
+.lp-highlights li{display:flex;gap:.5em;align-items:flex-start}
+.lp-highlights .lp-icon{width:18px;height:18px;color:var(--lp-accent);margin-top:.15em}
+.lp-toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:var(--lp-fg);color:var(--lp-bg);padding:.8em 1.2em;border-radius:12px;z-index:60;display:flex;gap:1em;align-items:center;box-shadow:0 10px 30px rgba(0,0,0,.2);font-size:.95rem}
+.lp-toast a{font-weight:700}
+.lp-crumb{font-size:.82rem;margin-bottom:.8em;color:color-mix(in srgb,var(--lp-fg) 80%,var(--lp-bg))}
+.lp-crumb a{text-underline-offset:3px}
+.shopify-payment-button{margin-top:10px}
+.shopify-payment-button__button{border-radius:var(--lp-radius)!important;min-height:50px}

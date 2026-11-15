@@ -1,0 +1,73 @@
+{%- comment -%} LP Builder · Offer / delivery / COD panel {%- endcomment -%}
+{{ 'lp-base.css' | asset_url | stylesheet_tag }}
+{%- assign p = section.settings.product | default: product -%}
+__STYLE__
+<div id="lp-{{ section.id }}" class="lp lp-offer lp-offer--{{ section.settings.layout }}">
+  <div class="lp-wrap">
+    <div class="lp-offer__box">
+      <div class="lp-offer__head">
+        {%- if section.settings.eyebrow != blank -%}<span class="lp-eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+        <h2>{{ section.settings.heading }}</h2>
+        {%- if section.settings.text != blank -%}<div>{{ section.settings.text }}</div>{%- endif -%}
+        {%- if section.settings.show_price -%}{% render 'lp-price', p: p %}{%- endif -%}
+        {%- if section.settings.code != blank -%}<p class="lp-offer__code">Use code <strong>{{ section.settings.code }}</strong></p>{%- endif -%}
+        {%- if section.settings.button_label != blank -%}<a class="lp-btn" href="#lp-buy">{{ section.settings.button_label }}</a>{%- endif -%}
+      </div>
+      <ol class="lp-offer__perks">
+        {%- for block in section.blocks -%}
+          <li {{ block.shopify_attributes }}>
+            <span class="lp-offer__icon">{% render 'lp-icon', name: block.settings.icon %}</span>
+            <div><h3>{{ block.settings.title }}</h3>{%- if block.settings.text != blank -%}<p class="lp-muted">{{ block.settings.text }}</p>{%- endif -%}</div>
+          </li>
+        {%- endfor -%}
+      </ol>
+    </div>
+  </div>
+</div>
+<style>
+.lp-offer__box{display:grid;gap:24px;padding:28px 22px;border-radius:var(--lp-radius);background:color-mix(in srgb,var(--lp-bg) 95%,#000);border:1.5px solid color-mix(in srgb,var(--lp-accent) 35%,transparent)}
+.lp-offer__perks{list-style:none;margin:0;padding:0;display:grid;gap:16px}
+.lp-offer__perks li{display:flex;gap:14px;align-items:flex-start}
+.lp-offer__perks h3{margin:0 0 .15em;font-size:1rem}
+.lp-offer__perks p{margin:0;font-size:.9rem}
+.lp-offer__icon{display:grid;place-items:center;width:42px;height:42px;border-radius:50%;background:var(--lp-bg);color:var(--lp-accent);flex:none}
+.lp-offer__code{font-size:.95rem}
+.lp-offer__code strong{border:1.5px dashed currentColor;padding:.15em .6em;border-radius:6px;letter-spacing:.06em}
+@media(min-width:750px){.lp-offer__box{grid-template-columns:1fr 1fr;padding:44px;gap:48px;align-items:center}}
+.lp-offer--timeline .lp-offer__box{grid-template-columns:1fr;background:none;border:0;padding:0}
+.lp-offer--timeline .lp-offer__head{text-align:center;max-width:680px;margin:0 auto}
+.lp-offer--timeline .lp-price{justify-content:center}
+@media(min-width:750px){.lp-offer--timeline .lp-offer__perks{grid-template-columns:repeat(auto-fit,minmax(180px,1fr));counter-reset:s}
+.lp-offer--timeline .lp-offer__perks li{flex-direction:column;align-items:center;text-align:center;position:relative}}
+.lp-offer--banner .lp-offer__box{--lp-bg:var(--lp-btn);--lp-fg:var(--lp-btn-fg);--lp-accent:var(--lp-btn-fg);background:var(--lp-btn);color:var(--lp-btn-fg);border:0}
+.lp-offer--banner .lp-muted{color:inherit}
+.lp-offer--banner .lp-btn{background:var(--lp-btn-fg);color:var(--lp-btn);border-color:var(--lp-btn-fg)}
+.lp-offer--banner .lp-price__save{background:var(--lp-btn-fg);color:var(--lp-btn)}
+.lp-offer--banner .lp-offer__icon{background:color-mix(in srgb,var(--lp-btn-fg) 15%,transparent);color:var(--lp-btn-fg)}
+</style>
+{% schema %}
+{
+  "name": "LP · Offer & delivery",
+  "tag": "section",
+  "settings": [
+    { "type": "product", "id": "product", "label": "Product", "info": "Only needed outside product templates." },
+    { "type": "select", "id": "layout", "label": "Layout", "default": "split", "options": [ { "value": "split", "label": "Split panel" }, { "value": "timeline", "label": "Delivery timeline" }, { "value": "banner", "label": "Bold banner" } ] },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Order today, wear it this week" },
+    { "type": "richtext", "id": "text", "label": "Text" },
+    { "type": "checkbox", "id": "show_price", "label": "Show price", "default": true },
+    { "type": "text", "id": "code", "label": "Discount code", "info": "Only add a real, active discount code." },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Add to cart" },
+    "__COMMON__"
+  ],
+  "blocks": [ { "type": "perk", "name": "Perk / step", "settings": [
+    { "type": "select", "id": "icon", "label": "Icon", "default": "truck", "options": [
+      { "value": "truck", "label": "Delivery" }, { "value": "cod", "label": "Cash on delivery" }, { "value": "return", "label": "Returns" }, { "value": "gift", "label": "Gift" },
+      { "value": "tag", "label": "Offer" }, { "value": "box", "label": "Packed" }, { "value": "clock", "label": "Time" }, { "value": "shield", "label": "Secure" }, { "value": "check", "label": "Check" }
+    ]},
+    { "type": "text", "id": "title", "label": "Title", "default": "Cash on delivery" },
+    { "type": "text", "id": "text", "label": "Text" }
+  ] } ],
+  "presets": [ { "name": "LP · Offer & delivery", "blocks": [ { "type": "perk" } ] } ]
+}
+{% endschema %}

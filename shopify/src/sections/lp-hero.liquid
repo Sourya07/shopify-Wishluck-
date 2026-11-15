@@ -1,0 +1,214 @@
+{%- comment -%} LP Builder · Hero + buy box (H1, price, rating, variant picker, real add to cart, trust row, Product JSON-LD) {%- endcomment -%}
+{{ 'lp-base.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'lp-product.js' | asset_url }}" defer></script>
+{%- assign p = section.settings.product | default: product -%}
+{%- assign layout = section.settings.layout -%}
+{%- assign rating_value = section.settings.rating_value | plus: 0 -%}
+{%- assign rating_count = section.settings.rating_count | plus: 0 -%}
+{%- if rating_value == 0 and p.metafields.reviews.rating.value != blank -%}
+  {%- assign rating_value = p.metafields.reviews.rating.value.rating | plus: 0 -%}
+  {%- assign rating_count = p.metafields.reviews.rating_count.value | plus: 0 -%}
+{%- endif -%}
+__STYLE__
+{%- style -%}
+#lp-{{ section.id }}{--lp-mh:{{ section.settings.mobile_media_height }}vh;--lp-ratio:{{ section.settings.media_ratio }}}
+{%- endstyle -%}
+<div id="lp-{{ section.id }}" class="lp lp-hero lp-hero--{{ layout }} lp-hero--media-{{ section.settings.media_fit }}">
+  <div class="lp-wrap lp-hero__grid">
+    <div class="lp-hero__media" id="lp-media-{{ section.id }}">
+      <div class="lp-hero__track">
+        {%- assign n = 0 -%}
+        {%- if section.settings.image != blank -%}
+          {%- assign n = 1 -%}
+          {%- assign alt = section.settings.image.alt | default: p.title -%}
+          <div class="lp-hero__slide" id="lp-slide-{{ section.id }}-0">
+            {{ section.settings.image | image_url: width: 1400 | image_tag: widths: '360,540,720,900,1100,1400', sizes: '(min-width: 990px) 55vw, 100vw', loading: 'eager', fetchpriority: 'high', class: 'lp-hero__img', alt: alt }}
+          </div>
+        {%- endif -%}
+        {%- for media in p.media limit: section.settings.max_media -%}
+          {%- if media.preview_image -%}
+            {%- assign alt = media.alt | default: p.title -%}
+            <div class="lp-hero__slide" id="lp-slide-{{ section.id }}-{{ forloop.index }}" data-media-id="{{ media.id }}">
+              {%- if forloop.first and n == 0 -%}
+                {{ media.preview_image | image_url: width: 1400 | image_tag: widths: '360,540,720,900,1100,1400', sizes: '(min-width: 990px) 55vw, 100vw', loading: 'eager', fetchpriority: 'high', class: 'lp-hero__img', alt: alt }}
+              {%- else -%}
+                {{ media.preview_image | image_url: width: 1100 | image_tag: widths: '360,540,720,900,1100', sizes: '(min-width: 990px) 40vw, 100vw', loading: 'lazy', class: 'lp-hero__img', alt: alt }}
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+      {%- if section.settings.show_thumbs and p.media.size > 1 -%}
+        <div class="lp-hero__thumbs" aria-label="Product images">
+          {%- for media in p.media limit: section.settings.max_media -%}
+            <button type="button" class="lp-hero__thumb" data-lp-thumb="lp-slide-{{ section.id }}-{{ forloop.index }}" aria-label="Show image {{ forloop.index }}">
+              {{ media.preview_image | image_url: width: 120 | image_tag: loading: 'lazy', alt: '', width: 60, height: 60 }}
+            </button>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    <div class="lp-hero__info">
+      {%- assign col = blank -%}
+      {%- for c in p.collections -%}
+        {%- unless c.handle == 'frontpage' or c.handle == 'home-page' or c.handle == 'all' -%}{%- assign col = c -%}{%- break -%}{%- endunless -%}
+      {%- endfor -%}
+      {%- if section.settings.show_breadcrumb and col != blank -%}
+        <nav class="lp-crumb" aria-label="Breadcrumb"><a href="{{ routes.root_url }}">Home</a> / <a href="{{ col.url }}">{{ col.title }}</a></nav>
+      {%- endif -%}
+      {%- if section.settings.eyebrow != blank -%}<span class="lp-eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+      <h1>{{ section.settings.heading | default: p.title }}</h1>
+      {%- if section.settings.show_rating and rating_value > 0 and rating_count > 0 -%}
+        <div class="lp-rating">{% render 'lp-stars', value: rating_value %}<span><strong>{{ rating_value }}</strong> · <a href="#lp-reviews">{{ rating_count }} reviews</a></span></div>
+      {%- endif -%}
+      {%- if section.settings.subheading != blank -%}<div class="lp-hero__sub">{{ section.settings.subheading }}</div>{%- endif -%}
+      {% render 'lp-price', p: p %}
+      {%- if section.settings.tax_note != blank -%}<p class="lp-tax">{{ section.settings.tax_note }}</p>{%- endif -%}
+      {%- capture highlights -%}{%- for block in section.blocks -%}{%- if block.type == 'highlight' -%}<li {{ block.shopify_attributes }}>{% render 'lp-icon', name: 'check' %}<span>{{ block.settings.text }}</span></li>{%- endif -%}{%- endfor -%}{%- endcapture -%}
+      {%- if highlights != blank -%}<ul class="lp-highlights">{{ highlights }}</ul>{%- endif -%}
+      {%- assign media_id = 'lp-media-' | append: section.id -%}
+      {% render 'lp-buy-form', p: p, sid: section.id, atc_label: section.settings.atc_label, soldout_label: section.settings.soldout_label, picker: section.settings.picker, show_quantity: section.settings.show_quantity, show_buy_now: section.settings.show_buy_now, after_add: section.settings.after_add, main: true, media_id: media_id %}
+      {%- capture trust -%}{%- for block in section.blocks -%}{%- if block.type == 'trust' -%}<li {{ block.shopify_attributes }}>{% render 'lp-icon', name: block.settings.icon %}<span>{{ block.settings.text }}</span></li>{%- endif -%}{%- endfor -%}{%- endcapture -%}
+      {%- if trust != blank -%}<ul class="lp-trust">{{ trust }}</ul>{%- endif -%}
+      {%- for block in section.blocks -%}{%- if block.type == '@app' -%}{% render block %}{%- endif -%}{%- endfor -%}
+    </div>
+  </div>
+</div>
+{%- if section.settings.enable_schema -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": {{ p.title | json }},
+  "url": {{ request.origin | append: p.url | json }},
+  "image": [{%- for media in p.media limit: 6 -%}{{ media.preview_image | image_url: width: 1200 | prepend: 'https:' | json }}{%- unless forloop.last -%},{%- endunless -%}{%- endfor -%}],
+  "description": {{ p.description | strip_html | strip | truncate: 500 | json }},
+  {%- if p.selected_or_first_available_variant.sku != blank %}"sku": {{ p.selected_or_first_available_variant.sku | json }},{%- endif %}
+  "brand": { "@type": "Brand", "name": {{ p.vendor | json }} },
+  "offers": [
+    {%- for v in p.variants -%}
+    { "@type": "Offer", "name": {{ v.title | json }},{% if v.sku != blank %} "sku": {{ v.sku | json }},{% endif %} "price": {{ v.price | divided_by: 100.0 | json }}, "priceCurrency": {{ cart.currency.iso_code | json }}, "availability": "https://schema.org/{% if v.available %}InStock{% else %}OutOfStock{% endif %}", "itemCondition": "https://schema.org/NewCondition", "url": {{ request.origin | append: v.url | json }} }{%- unless forloop.last -%},{%- endunless -%}
+    {%- endfor -%}
+  ]
+  {%- if rating_value > 0 and rating_count > 0 -%},
+  "aggregateRating": { "@type": "AggregateRating", "ratingValue": {{ rating_value | json }}, "reviewCount": {{ rating_count | json }}, "bestRating": 5 }
+  {%- endif %}
+}
+</script>
+{%- endif -%}
+
+<style>
+.lp-hero__grid{display:grid;gap:22px}
+.lp-hero__media{min-width:0;position:relative}
+.lp-hero__track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;border-radius:var(--lp-radius);background:color-mix(in srgb,var(--lp-fg) 5%,transparent)}
+.lp-hero__track::-webkit-scrollbar{display:none}
+.lp-hero__slide{flex:0 0 100%;scroll-snap-align:start;aspect-ratio:var(--lp-ratio);max-height:var(--lp-mh)}
+.lp-hero__img{width:100%;height:100%;object-fit:cover}
+.lp-hero--media-contain .lp-hero__img{object-fit:contain}
+.lp-hero__thumbs{display:flex;gap:8px;margin-top:10px;overflow-x:auto}
+.lp-hero__thumb{padding:0;border:1.5px solid transparent;border-radius:calc(var(--lp-radius)/2);background:none;cursor:pointer;flex:none;overflow:hidden;width:52px;height:52px}
+.lp-hero__thumb img{width:100%;height:100%;object-fit:cover}
+.lp-hero__thumb:hover{border-color:var(--lp-fg)}
+.lp-hero__sub{font-size:1.05rem;margin-bottom:.6em}
+.lp-hero__sub p:last-child{margin:0}
+.lp-hero h1{margin-bottom:.25em}
+@media(max-width:749px){
+  .lp-hero{padding-top:min(var(--lp-pt),16px)}
+  .lp-hero__thumbs{display:none}
+  .lp-hero__sub,.lp-hero .lp-eyebrow,.lp-hero .lp-tax,.lp-hero .lp-crumb{display:none}
+  .lp-hero .lp-rating{margin:0 0 .2em;font-size:.85rem}
+  .lp-hero .lp-opt legend{font-size:.8rem;margin-bottom:.3em}
+  .lp-hero .lp-pills label{min-height:36px;min-width:42px}
+  .lp-hero .lp-price__now{font-size:1.35rem}
+  .lp-hero .lp-highlights{display:none}
+  .lp-hero__grid{gap:14px}
+  .lp-hero h1{font-size:calc(1.55rem*var(--lp-h-scale,1))}
+  .lp-hero .lp-price{margin:.1em 0 .5em}
+  .lp-hero .lp-opt{margin-bottom:.6em}
+  .lp-hero--overlay .lp-hero__info{margin:-48px 12px 0;position:relative;background:var(--lp-bg);padding:18px;border-radius:var(--lp-radius);box-shadow:0 8px 30px rgba(0,0,0,.12)}
+  .lp-hero--overlay .lp-wrap{padding:0}
+  .lp-hero--overlay .lp-hero__track{border-radius:0}
+  .lp-hero--editorial .lp-hero__media{order:2}
+}
+@media(min-width:750px){
+  .lp-hero__slide{max-height:none}
+  .lp-hero--split_left .lp-hero__grid,.lp-hero--gallery_grid .lp-hero__grid,.lp-hero--editorial .lp-hero__grid{grid-template-columns:1.15fr 1fr;gap:48px;align-items:start}
+  .lp-hero--split_right .lp-hero__grid{grid-template-columns:1fr 1.15fr;gap:48px;align-items:start}
+  .lp-hero--split_right .lp-hero__media{order:2}
+  .lp-hero__info{position:sticky;top:24px}
+  .lp-hero--stacked .lp-hero__grid{max-width:760px;margin:0 auto}
+  .lp-hero--stacked .lp-hero__slide{aspect-ratio:16/10}
+  .lp-hero--stacked .lp-hero__info{position:static;text-align:center}
+  .lp-hero--stacked .lp-price,.lp-hero--stacked .lp-pills,.lp-hero--stacked .lp-rating{justify-content:center}
+  .lp-hero--gallery_grid .lp-hero__track{display:grid;grid-template-columns:1fr 1fr;gap:10px;overflow:visible;background:none}
+  .lp-hero--gallery_grid .lp-hero__slide{border-radius:var(--lp-radius);overflow:hidden}
+  .lp-hero--gallery_grid .lp-hero__slide:first-child{grid-column:1/-1}
+  .lp-hero--gallery_grid .lp-hero__thumbs{display:none}
+  .lp-hero--overlay{position:relative;padding:0}
+  .lp-hero--overlay .lp-wrap.lp-hero__grid{max-width:none;padding:0;display:block;position:relative}
+  .lp-hero--overlay .lp-hero__track{border-radius:0;height:min(88vh,820px)}
+  .lp-hero--overlay .lp-hero__slide{aspect-ratio:auto;height:100%}
+  .lp-hero--overlay .lp-hero__thumbs{position:absolute;left:40px;bottom:24px}
+  .lp-hero--overlay .lp-hero__info{position:absolute;right:max(40px,calc((100vw - 1240px)/2 + 40px));top:50%;transform:translateY(-50%);width:min(440px,42vw);background:var(--lp-bg);padding:32px;border-radius:var(--lp-radius);box-shadow:0 20px 60px rgba(0,0,0,.18)}
+  .lp-hero--editorial .lp-hero__info{position:static;order:-1;padding-top:6vh}
+  .lp-hero--editorial h1{font-size:calc(clamp(2.4rem,1.4rem + 3.6vw,4.6rem)*var(--lp-h-scale,1))}
+}
+</style>
+
+{% schema %}
+{
+  "name": "LP · Hero + buy box",
+  "tag": "section",
+  "class": "lp-section",
+  "settings": [
+    { "type": "product", "id": "product", "label": "Product", "info": "Leave empty on product templates. Pick a product to use this section on a regular page." },
+    { "type": "select", "id": "layout", "label": "Layout", "default": "split_left", "options": [
+      { "value": "split_left", "label": "Split · image left" },
+      { "value": "split_right", "label": "Split · image right" },
+      { "value": "overlay", "label": "Full-bleed image with card" },
+      { "value": "stacked", "label": "Stacked · centred" },
+      { "value": "gallery_grid", "label": "Gallery grid" },
+      { "value": "editorial", "label": "Editorial · big headline" }
+    ]},
+    { "type": "image_picker", "id": "image", "label": "Hero image override", "info": "Optional. Defaults to the product images." },
+    { "type": "range", "id": "max_media", "label": "Images to show", "min": 1, "max": 10, "step": 1, "default": 6 },
+    { "type": "select", "id": "media_ratio", "label": "Image shape", "default": "1/1", "options": [
+      { "value": "1/1", "label": "Square" }, { "value": "4/5", "label": "Portrait" }, { "value": "3/4", "label": "Tall" }, { "value": "4/3", "label": "Landscape" }
+    ]},
+    { "type": "select", "id": "media_fit", "label": "Image fit", "default": "cover", "options": [ { "value": "cover", "label": "Fill" }, { "value": "contain", "label": "Fit" } ] },
+    { "type": "range", "id": "mobile_media_height", "label": "Max image height on mobile", "min": 20, "max": 60, "step": 1, "unit": "vh", "default": 30, "info": "Keeps add to cart on the first mobile screen." },
+    { "type": "checkbox", "id": "show_thumbs", "label": "Show thumbnails", "default": true },
+    { "type": "header", "content": "Content" },
+    { "type": "checkbox", "id": "show_breadcrumb", "label": "Show collection breadcrumb", "default": true },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow" },
+    { "type": "text", "id": "heading", "label": "Heading (H1)", "info": "Defaults to the product title." },
+    { "type": "richtext", "id": "subheading", "label": "Subheading" },
+    { "type": "checkbox", "id": "show_rating", "label": "Show rating", "default": true },
+    { "type": "text", "id": "rating_value", "label": "Rating value", "info": "Real rating only (e.g. 4.6). Leave empty to use the reviews app metafield." },
+    { "type": "text", "id": "rating_count", "label": "Number of reviews" },
+    { "type": "text", "id": "tax_note", "label": "Price note", "default": "Inclusive of all taxes" },
+    { "type": "header", "content": "Buy box" },
+    { "type": "select", "id": "picker", "label": "Variant picker", "default": "pills", "options": [ { "value": "pills", "label": "Buttons" }, { "value": "dropdown", "label": "Dropdown" } ] },
+    { "type": "checkbox", "id": "show_quantity", "label": "Show quantity", "default": true },
+    { "type": "text", "id": "atc_label", "label": "Add to cart label", "default": "Add to cart" },
+    { "type": "text", "id": "soldout_label", "label": "Sold out label", "default": "Sold out" },
+    { "type": "checkbox", "id": "show_buy_now", "label": "Show dynamic checkout button", "default": false },
+    { "type": "select", "id": "after_add", "label": "After adding to cart", "default": "toast", "options": [ { "value": "toast", "label": "Stay on page" }, { "value": "cart", "label": "Go to cart" } ] },
+    { "type": "checkbox", "id": "enable_schema", "label": "Output Product structured data", "default": true },
+    "__COMMON__"
+  ],
+  "blocks": [
+    { "type": "@app" },
+    { "type": "highlight", "name": "Highlight", "limit": 6, "settings": [ { "type": "text", "id": "text", "label": "Text", "default": "Key fact about the product" } ] },
+    { "type": "trust", "name": "Trust item", "limit": 6, "settings": [
+      { "type": "select", "id": "icon", "label": "Icon", "default": "truck", "options": [
+        { "value": "truck", "label": "Delivery" }, { "value": "cod", "label": "Cash on delivery" }, { "value": "return", "label": "Returns" }, { "value": "star", "label": "Rating" },
+        { "value": "shield", "label": "Secure / warranty" }, { "value": "leaf", "label": "Natural" }, { "value": "clock", "label": "Time" }, { "value": "gift", "label": "Gift" }, { "value": "lock", "label": "Secure payment" }, { "value": "check", "label": "Check" }
+      ]},
+      { "type": "text", "id": "text", "label": "Text", "default": "Cash on delivery available" }
+    ]}
+  ],
+  "presets": [ { "name": "LP · Hero + buy box", "blocks": [ { "type": "trust", "settings": { "icon": "truck", "text": "Fast delivery" } }, { "type": "trust", "settings": { "icon": "return", "text": "Easy returns" } } ] } ]
+}
+{% endschema %}

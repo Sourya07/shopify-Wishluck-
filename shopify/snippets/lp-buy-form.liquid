@@ -1,0 +1,51 @@
+{%- comment -%}
+  Shared buy form (variant picker + quantity + real add to cart posting to /cart/add).
+  Params: p (product), sid (section id), atc_label, soldout_label, picker ('pills'|'dropdown'),
+          show_quantity, show_buy_now, after_add ('toast'|'cart'), main (true for the primary ATC), media_id
+{%- endcomment -%}
+{%- assign current = p.selected_or_first_available_variant -%}
+{%- assign form_id = 'lp-form-' | append: sid -%}
+<lp-buy-form data-atc="{{ atc_label | escape }}" data-soldout="{{ soldout_label | escape }}" data-unavailable="Unavailable"
+  data-after-add="{{ after_add | default: 'toast' }}" data-currency="{{ cart.currency.iso_code }}" data-locale="{{ request.locale.iso_code | default: 'en' }}-IN"
+  data-update-url="{% if main %}true{% else %}false{% endif %}"{% if media_id %} data-media="{{ media_id }}"{% endif %}>
+  {%- form 'product', p, id: form_id, class: 'lp-form', novalidate: 'novalidate' -%}
+    <input type="hidden" name="id" value="{{ current.id }}" data-lp-variant-id>
+    {%- unless p.has_only_default_variant -%}
+      {%- if picker == 'dropdown' -%}
+        <label class="lp-sr" for="{{ form_id }}-v">Choose option</label>
+        <select id="{{ form_id }}-v" class="lp-select" data-lp-variant-select>
+          {%- for v in p.variants -%}
+            <option value="{{ v.id }}"{% if v.id == current.id %} selected{% endif %}{% unless v.available %} disabled{% endunless %}>{{ v.title }}{% unless v.available %} — sold out{% endunless %}</option>
+          {%- endfor -%}
+        </select>
+      {%- else -%}
+        {%- for option in p.options_with_values -%}
+          {%- assign oi = option.position | minus: 1 -%}
+          <fieldset class="lp-opt">
+            <legend>{{ option.name }}: <span data-lp-opt-label>{{ option.selected_value }}</span></legend>
+            <div class="lp-pills">
+              {%- for value in option.values -%}
+                <input type="radio" id="{{ form_id }}-{{ oi }}-{{ forloop.index0 }}" name="lp-{{ form_id }}-{{ oi }}" value="{{ value | escape }}" data-lp-option="{{ oi }}"{% if option.selected_value == value %} checked{% endif %}>
+                <label for="{{ form_id }}-{{ oi }}-{{ forloop.index0 }}">{{ value }}</label>
+              {%- endfor -%}
+            </div>
+          </fieldset>
+        {%- endfor -%}
+      {%- endif -%}
+    {%- endunless -%}
+    <div class="lp-qty-atc">
+      {%- if show_quantity -%}
+        <div class="lp-qty">
+          <button type="button" data-lp-qty="-1" aria-label="Decrease quantity">−</button>
+          <input type="number" name="quantity" value="1" min="1" aria-label="Quantity">
+          <button type="button" data-lp-qty="1" aria-label="Increase quantity">+</button>
+        </div>
+      {%- endif -%}
+      <button type="submit" name="add" class="lp-btn lp-btn--atc" data-lp-atc{% if main %} data-lp-main-atc id="lp-buy"{% endif %}{% unless current.available %} disabled{% endunless %}>
+        <span data-lp-atc-label>{% if current.available %}{{ atc_label }}{% else %}{{ soldout_label }}{% endif %}</span>
+      </button>
+    </div>
+    {%- if show_buy_now -%}{{ form | payment_button }}{%- endif -%}
+    <script type="application/json" data-lp-variants>{{ p.variants | json }}</script>
+  {%- endform -%}
+</lp-buy-form>

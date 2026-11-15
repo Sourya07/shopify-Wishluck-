@@ -1,0 +1,91 @@
+{%- comment -%} LP Builder · FAQ (blocks) + FAQPage structured data {%- endcomment -%}
+{{ 'lp-base.css' | asset_url | stylesheet_tag }}
+{%- style -%}
+{{ section.settings.heading_font | font_face: font_display: 'swap' }}
+{{ section.settings.body_font | font_face: font_display: 'swap' }}
+#lp-{{ section.id }}{--lp-bg:{{ section.settings.color_bg }};--lp-fg:{{ section.settings.color_text }};--lp-accent:{{ section.settings.color_accent }};--lp-btn:{{ section.settings.color_button }};--lp-btn-fg:{{ section.settings.color_button_text }};--lp-hf:{{ section.settings.heading_font.family }},{{ section.settings.heading_font.fallback_families }};--lp-hw:{{ section.settings.heading_font.weight }};--lp-hs:{{ section.settings.heading_font.style }};--lp-bf:{{ section.settings.body_font.family }},{{ section.settings.body_font.fallback_families }};--lp-bw:{{ section.settings.body_font.weight }};--lp-radius:{{ section.settings.radius }}px;--lp-pt:{{ section.settings.padding_top }}px;--lp-pb:{{ section.settings.padding_bottom }}px;--lp-h-scale:{{ section.settings.heading_scale | divided_by: 100.0 }}}
+{%- endstyle -%}
+<div id="lp-{{ section.id }}" class="lp lp-faq lp-faq--{{ section.settings.layout }}">
+  <div class="lp-wrap lp-faq__grid">
+    <div class="lp-faq__head">
+      {%- if section.settings.eyebrow != blank -%}<span class="lp-eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+      <h2>{{ section.settings.heading }}</h2>
+      {%- if section.settings.intro != blank -%}<div class="lp-muted">{{ section.settings.intro }}</div>{%- endif -%}
+    </div>
+    <div class="lp-faq__list">
+      {%- for block in section.blocks -%}
+        {%- if section.settings.layout == 'open' -%}
+          <div class="lp-faq__item" {{ block.shopify_attributes }}><h3>{{ block.settings.question }}</h3><div class="lp-faq__a">{{ block.settings.answer }}</div></div>
+        {%- else -%}
+          <details class="lp-faq__item" {{ block.shopify_attributes }}{% if forloop.first and section.settings.open_first %} open{% endif %}>
+            <summary><h3>{{ block.settings.question }}</h3><span class="lp-faq__plus" aria-hidden="true"></span></summary>
+            <div class="lp-faq__a">{{ block.settings.answer }}</div>
+          </details>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+{%- if section.settings.enable_schema and section.blocks.size > 0 -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {%- for block in section.blocks -%}
+    { "@type": "Question", "name": {{ block.settings.question | strip_html | json }}, "acceptedAnswer": { "@type": "Answer", "text": {{ block.settings.answer | strip_html | strip | json }} } }{%- unless forloop.last -%},{%- endunless -%}
+    {%- endfor -%}
+  ]
+}
+</script>
+{%- endif -%}
+<style>
+.lp-faq__grid{display:grid;gap:24px}
+.lp-faq__item{border-bottom:1px solid color-mix(in srgb,var(--lp-fg) 14%,transparent);padding:4px 0}
+.lp-faq__item summary{list-style:none;display:flex;justify-content:space-between;gap:16px;align-items:center;cursor:pointer;padding:14px 0;min-height:48px}
+.lp-faq__item summary::-webkit-details-marker{display:none}
+.lp-faq__item h3{margin:0;font-size:1.04rem;font-family:var(--lp-bf);font-weight:600}
+.lp-faq--open .lp-faq__item h3{padding-top:14px;margin-bottom:.4em}
+.lp-faq__a{padding:0 0 16px;color:color-mix(in srgb,var(--lp-fg) 85%,var(--lp-bg))}
+.lp-faq__a p:last-child{margin:0}
+.lp-faq__plus{position:relative;width:14px;height:14px;flex:none}
+.lp-faq__plus::before,.lp-faq__plus::after{content:"";position:absolute;inset:6px 0 auto;height:2px;background:currentColor;transition:transform .2s}
+.lp-faq__plus::after{transform:rotate(90deg)}
+details[open] .lp-faq__plus::after{transform:rotate(0)}
+@media(min-width:750px){.lp-faq--accordion .lp-faq__grid,.lp-faq--open .lp-faq__grid{grid-template-columns:1fr 1.6fr;gap:64px}}
+.lp-faq--centered .lp-faq__grid{max-width:780px;margin:0 auto}
+.lp-faq--centered .lp-faq__head{text-align:center}
+</style>
+{% schema %}
+{
+  "name": "LP · FAQ",
+  "tag": "section",
+  "settings": [
+    { "type": "select", "id": "layout", "label": "Layout", "default": "accordion", "options": [ { "value": "accordion", "label": "Accordion · side heading" }, { "value": "centered", "label": "Accordion · centred" }, { "value": "open", "label": "All answers open" } ] },
+    { "type": "checkbox", "id": "open_first", "label": "Open first question", "default": true },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "FAQ" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Questions, answered" },
+    { "type": "richtext", "id": "intro", "label": "Intro" },
+    { "type": "checkbox", "id": "enable_schema", "label": "Output FAQPage structured data", "default": true },
+    {"type":"header","content":"Colours"},
+    {"type":"color","id":"color_bg","label":"Background","default":"#ffffff"},
+    {"type":"color","id":"color_text","label":"Text","default":"#121212"},
+    {"type":"color","id":"color_accent","label":"Accent","default":"#334fb4"},
+    {"type":"color","id":"color_button","label":"Button","default":"#121212"},
+    {"type":"color","id":"color_button_text","label":"Button text","default":"#ffffff"},
+    {"type":"header","content":"Typography"},
+    {"type":"font_picker","id":"heading_font","label":"Heading font","default":"assistant_n4"},
+    {"type":"font_picker","id":"body_font","label":"Body font","default":"assistant_n4"},
+    {"type":"range","id":"heading_scale","label":"Heading size","min":80,"max":140,"step":5,"unit":"%","default":100},
+    {"type":"header","content":"Spacing & shape"},
+    {"type":"range","id":"radius","label":"Corner radius","min":0,"max":40,"step":2,"unit":"px","default":8},
+    {"type":"range","id":"padding_top","label":"Top padding","min":0,"max":120,"step":4,"unit":"px","default":56},
+    {"type":"range","id":"padding_bottom","label":"Bottom padding","min":0,"max":120,"step":4,"unit":"px","default":56}
+  ],
+  "blocks": [ { "type": "faq", "name": "Question", "settings": [
+    { "type": "text", "id": "question", "label": "Question", "default": "What is it made of?" },
+    { "type": "richtext", "id": "answer", "label": "Answer", "default": "<p>Give a short, direct answer that makes sense on its own.</p>" }
+  ] } ],
+  "presets": [ { "name": "LP · FAQ", "blocks": [ { "type": "faq" }, { "type": "faq" } ] } ]
+}
+{% endschema %}

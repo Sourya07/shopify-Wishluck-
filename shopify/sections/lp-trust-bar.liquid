@@ -1,0 +1,56 @@
+{%- comment -%} LP Builder · Trust strip {%- endcomment -%}
+{{ 'lp-base.css' | asset_url | stylesheet_tag }}
+{%- style -%}
+{{ section.settings.heading_font | font_face: font_display: 'swap' }}
+{{ section.settings.body_font | font_face: font_display: 'swap' }}
+#lp-{{ section.id }}{--lp-bg:{{ section.settings.color_bg }};--lp-fg:{{ section.settings.color_text }};--lp-accent:{{ section.settings.color_accent }};--lp-btn:{{ section.settings.color_button }};--lp-btn-fg:{{ section.settings.color_button_text }};--lp-hf:{{ section.settings.heading_font.family }},{{ section.settings.heading_font.fallback_families }};--lp-hw:{{ section.settings.heading_font.weight }};--lp-hs:{{ section.settings.heading_font.style }};--lp-bf:{{ section.settings.body_font.family }},{{ section.settings.body_font.fallback_families }};--lp-bw:{{ section.settings.body_font.weight }};--lp-radius:{{ section.settings.radius }}px;--lp-pt:{{ section.settings.padding_top }}px;--lp-pb:{{ section.settings.padding_bottom }}px;--lp-h-scale:{{ section.settings.heading_scale | divided_by: 100.0 }}}
+{%- endstyle -%}
+<div id="lp-{{ section.id }}" class="lp lp-tbar lp-tbar--{{ section.settings.layout }}">
+  <div class="lp-wrap">
+    {%- if section.settings.heading != blank -%}<h2 class="lp-sr">{{ section.settings.heading }}</h2>{%- endif -%}
+    <ul class="lp-tbar__list">
+      {%- for block in section.blocks -%}
+        <li {{ block.shopify_attributes }}>{% render 'lp-icon', name: block.settings.icon %}<span>{{ block.settings.text }}</span></li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</div>
+<style>
+.lp-tbar__list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:14px 18px;font-size:.9rem;font-weight:500}
+.lp-tbar__list li{display:flex;gap:.6em;align-items:center}
+.lp-tbar__list .lp-icon{color:var(--lp-accent)}
+@media(min-width:750px){.lp-tbar__list{display:flex;justify-content:space-around;flex-wrap:wrap}}
+.lp-tbar--boxed .lp-tbar__list li{background:color-mix(in srgb,var(--lp-fg) 5%,var(--lp-bg));padding:12px 14px;border-radius:var(--lp-radius)}
+</style>
+{% schema %}
+{
+  "name": "LP · Trust strip",
+  "tag": "section",
+  "settings": [
+    { "type": "select", "id": "layout", "label": "Layout", "default": "strip", "options": [ { "value": "strip", "label": "Strip" }, { "value": "boxed", "label": "Boxed" } ] },
+    { "type": "text", "id": "heading", "label": "Accessible heading", "default": "Why shop with us" },
+    {"type":"header","content":"Colours"},
+    {"type":"color","id":"color_bg","label":"Background","default":"#ffffff"},
+    {"type":"color","id":"color_text","label":"Text","default":"#121212"},
+    {"type":"color","id":"color_accent","label":"Accent","default":"#334fb4"},
+    {"type":"color","id":"color_button","label":"Button","default":"#121212"},
+    {"type":"color","id":"color_button_text","label":"Button text","default":"#ffffff"},
+    {"type":"header","content":"Typography"},
+    {"type":"font_picker","id":"heading_font","label":"Heading font","default":"assistant_n4"},
+    {"type":"font_picker","id":"body_font","label":"Body font","default":"assistant_n4"},
+    {"type":"range","id":"heading_scale","label":"Heading size","min":80,"max":140,"step":5,"unit":"%","default":100},
+    {"type":"header","content":"Spacing & shape"},
+    {"type":"range","id":"radius","label":"Corner radius","min":0,"max":40,"step":2,"unit":"px","default":8},
+    {"type":"range","id":"padding_top","label":"Top padding","min":0,"max":120,"step":4,"unit":"px","default":56},
+    {"type":"range","id":"padding_bottom","label":"Bottom padding","min":0,"max":120,"step":4,"unit":"px","default":56}
+  ],
+  "blocks": [ { "type": "item", "name": "Trust item", "settings": [
+    { "type": "select", "id": "icon", "label": "Icon", "default": "truck", "options": [
+      { "value": "truck", "label": "Delivery" }, { "value": "cod", "label": "Cash on delivery" }, { "value": "return", "label": "Returns" }, { "value": "star", "label": "Rating" },
+      { "value": "shield", "label": "Secure / warranty" }, { "value": "lock", "label": "Secure payment" }, { "value": "leaf", "label": "Natural" }, { "value": "gift", "label": "Gift" }, { "value": "check", "label": "Check" }
+    ]},
+    { "type": "text", "id": "text", "label": "Text", "default": "Free delivery" }
+  ] } ],
+  "presets": [ { "name": "LP · Trust strip", "blocks": [ { "type": "item" }, { "type": "item" } ] } ]
+}
+{% endschema %}

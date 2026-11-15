@@ -1,0 +1,33 @@
+{%- comment -%}
+  LP Builder · A/B split (invisible). Put it on design A and B templates with the same test ID.
+  Visitors are split 50/50 with a cookie; B is served via ?view=<suffix>. Views and add-to-carts are
+  beaconed to the LP Builder backend so the dashboard can compare designs.
+{%- endcomment -%}
+{%- if section.settings.enabled and section.settings.test_id != blank -%}
+<script>
+(() => {
+  const id = {{ section.settings.test_id | json }}, me = {{ section.settings.variant | json }}, bView = {{ section.settings.b_view | json }}, api = {{ section.settings.endpoint | json }};
+  const key = 'lp_ab_' + id; let v = document.cookie.match(new RegExp(key + '=(a|b)'))?.[1];
+  if (!v) { v = Math.random() * 100 < {{ section.settings.split }} ? 'b' : 'a'; document.cookie = key + '=' + v + ';path=/;max-age=2592000;SameSite=Lax'; }
+  const u = new URL(location.href);
+  if ({{ request.design_mode | json }} !== true && me === 'a' && v === 'b' && bView && u.searchParams.get('view') !== bView) { u.searchParams.set('view', bView); location.replace(u); return; }
+  const send = (event) => { if (!api) return; try { navigator.sendBeacon(api.replace(/\/$/, '') + '/api/ab/' + encodeURIComponent(id) + '/event', new Blob([JSON.stringify({ variant: me, event })], { type: 'text/plain' })); } catch (e) {} };
+  send('view'); document.addEventListener('lp:added', () => send('atc'));
+  document.addEventListener('submit', (e) => { if (e.target.matches('form[action*="/cart/add"]')) send('atc'); }, true);
+})();
+</script>
+{%- endif -%}
+{% schema %}
+{
+  "name": "LP · A/B test",
+  "settings": [
+    { "type": "checkbox", "id": "enabled", "label": "Enable test", "default": true },
+    { "type": "text", "id": "test_id", "label": "Test ID" },
+    { "type": "select", "id": "variant", "label": "This template is", "default": "a", "options": [ { "value": "a", "label": "Variant A (assigned to product)" }, { "value": "b", "label": "Variant B" } ] },
+    { "type": "text", "id": "b_view", "label": "Variant B template suffix", "info": "e.g. lp-tshirts-ab12-2" },
+    { "type": "range", "id": "split", "label": "Traffic to B", "min": 0, "max": 100, "step": 5, "unit": "%", "default": 50 },
+    { "type": "text", "id": "endpoint", "label": "Tracking endpoint", "info": "LP Builder backend URL" }
+  ],
+  "presets": [ { "name": "LP · A/B test" } ]
+}
+{% endschema %}

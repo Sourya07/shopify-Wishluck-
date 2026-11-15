@@ -1,0 +1,67 @@
+{%- comment -%} LP Builder · Sticky add-to-cart bar (appears once the main button scrolls out of view) {%- endcomment -%}
+{{ 'lp-base.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'lp-product.js' | asset_url }}" defer></script>
+{%- assign p = section.settings.product | default: product -%}
+{%- style -%}
+{{ section.settings.heading_font | font_face: font_display: 'swap' }}
+{{ section.settings.body_font | font_face: font_display: 'swap' }}
+#lp-{{ section.id }}{--lp-bg:{{ section.settings.color_bg }};--lp-fg:{{ section.settings.color_text }};--lp-accent:{{ section.settings.color_accent }};--lp-btn:{{ section.settings.color_button }};--lp-btn-fg:{{ section.settings.color_button_text }};--lp-hf:{{ section.settings.heading_font.family }},{{ section.settings.heading_font.fallback_families }};--lp-hw:{{ section.settings.heading_font.weight }};--lp-hs:{{ section.settings.heading_font.style }};--lp-bf:{{ section.settings.body_font.family }},{{ section.settings.body_font.fallback_families }};--lp-bw:{{ section.settings.body_font.weight }};--lp-radius:{{ section.settings.radius }}px;--lp-pt:{{ section.settings.padding_top }}px;--lp-pb:{{ section.settings.padding_bottom }}px;--lp-h-scale:{{ section.settings.heading_scale | divided_by: 100.0 }}}
+{%- endstyle -%}
+<lp-sticky-atc id="lp-{{ section.id }}" class="lp lp-sticky lp-sticky--{{ section.settings.show_on }}">
+  <div class="lp-sticky__inner">
+    {%- if section.settings.show_image and p.featured_media -%}
+      {{ p.featured_media.preview_image | image_url: width: 120 | image_tag: loading: 'lazy', class: 'lp-sticky__img', alt: '', width: 44, height: 44 }}
+    {%- endif -%}
+    <div class="lp-sticky__meta">
+      <p class="lp-sticky__title">{{ p.title }}</p>
+      {% render 'lp-price', p: p %}
+    </div>
+    {% render 'lp-buy-form', p: p, sid: section.id, atc_label: section.settings.atc_label, soldout_label: 'Sold out', picker: 'dropdown', show_quantity: false, show_buy_now: false, after_add: section.settings.after_add, main: false %}
+  </div>
+</lp-sticky-atc>
+<style>
+#shopify-section-{{ section.id }}{position:static}
+.lp-sticky{position:fixed;left:0;right:0;bottom:0;z-index:40;padding:10px 0 calc(10px + env(safe-area-inset-bottom));box-shadow:0 -6px 24px rgba(0,0,0,.12);transform:translateY(110%);transition:transform .25s ease;visibility:hidden}
+.lp-sticky.is-visible{transform:none;visibility:visible}
+.lp-sticky__inner{display:flex;align-items:center;gap:10px;max-width:1240px;margin:0 auto;padding:0 12px}
+.lp-sticky__img{width:44px;height:44px;border-radius:8px;object-fit:cover;flex:none}
+.lp-sticky__meta{min-width:0;flex:1}
+.lp-sticky__title{margin:0;font-size:.85rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lp-sticky .lp-price{margin:0;gap:.35em}
+.lp-sticky .lp-price__now{font-size:1rem}
+.lp-sticky .lp-price__was,.lp-sticky .lp-price__save{font-size:.72rem}
+.lp-sticky lp-buy-form{flex:0 0 auto}
+.lp-sticky form{display:flex;gap:8px;align-items:center}
+.lp-sticky .lp-select{min-height:44px;max-width:120px;font-size:.85rem}
+.lp-sticky .lp-btn{min-height:44px;padding:0 1.1em;white-space:nowrap}
+@media(max-width:480px){.lp-sticky .lp-select{max-width:92px}.lp-sticky__img{display:none}}
+@media(min-width:990px){.lp-sticky--mobile{display:none}}
+</style>
+{% schema %}
+{
+  "name": "LP · Sticky add to cart",
+  "tag": "section",
+  "settings": [
+    { "type": "product", "id": "product", "label": "Product", "info": "Only needed outside product templates." },
+    { "type": "select", "id": "show_on", "label": "Show on", "default": "mobile", "options": [ { "value": "mobile", "label": "Mobile & tablet" }, { "value": "all", "label": "All devices" } ] },
+    { "type": "checkbox", "id": "show_image", "label": "Show image", "default": true },
+    { "type": "text", "id": "atc_label", "label": "Button label", "default": "Add to cart" },
+    { "type": "select", "id": "after_add", "label": "After adding to cart", "default": "toast", "options": [ { "value": "toast", "label": "Stay on page" }, { "value": "cart", "label": "Go to cart" } ] },
+    {"type":"header","content":"Colours"},
+    {"type":"color","id":"color_bg","label":"Background","default":"#ffffff"},
+    {"type":"color","id":"color_text","label":"Text","default":"#121212"},
+    {"type":"color","id":"color_accent","label":"Accent","default":"#334fb4"},
+    {"type":"color","id":"color_button","label":"Button","default":"#121212"},
+    {"type":"color","id":"color_button_text","label":"Button text","default":"#ffffff"},
+    {"type":"header","content":"Typography"},
+    {"type":"font_picker","id":"heading_font","label":"Heading font","default":"assistant_n4"},
+    {"type":"font_picker","id":"body_font","label":"Body font","default":"assistant_n4"},
+    {"type":"range","id":"heading_scale","label":"Heading size","min":80,"max":140,"step":5,"unit":"%","default":100},
+    {"type":"header","content":"Spacing & shape"},
+    {"type":"range","id":"radius","label":"Corner radius","min":0,"max":40,"step":2,"unit":"px","default":8},
+    {"type":"range","id":"padding_top","label":"Top padding","min":0,"max":120,"step":4,"unit":"px","default":56},
+    {"type":"range","id":"padding_bottom","label":"Bottom padding","min":0,"max":120,"step":4,"unit":"px","default":56}
+  ],
+  "presets": [ { "name": "LP · Sticky add to cart" } ]
+}
+{% endschema %}

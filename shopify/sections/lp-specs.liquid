@@ -1,0 +1,85 @@
+{%- comment -%} LP Builder · Specs & facts (GEO: quotable facts — specs table, who it's for, in the box) {%- endcomment -%}
+{{ 'lp-base.css' | asset_url | stylesheet_tag }}
+{%- assign p = section.settings.product | default: product -%}
+{%- style -%}
+{{ section.settings.heading_font | font_face: font_display: 'swap' }}
+{{ section.settings.body_font | font_face: font_display: 'swap' }}
+#lp-{{ section.id }}{--lp-bg:{{ section.settings.color_bg }};--lp-fg:{{ section.settings.color_text }};--lp-accent:{{ section.settings.color_accent }};--lp-btn:{{ section.settings.color_button }};--lp-btn-fg:{{ section.settings.color_button_text }};--lp-hf:{{ section.settings.heading_font.family }},{{ section.settings.heading_font.fallback_families }};--lp-hw:{{ section.settings.heading_font.weight }};--lp-hs:{{ section.settings.heading_font.style }};--lp-bf:{{ section.settings.body_font.family }},{{ section.settings.body_font.fallback_families }};--lp-bw:{{ section.settings.body_font.weight }};--lp-radius:{{ section.settings.radius }}px;--lp-pt:{{ section.settings.padding_top }}px;--lp-pb:{{ section.settings.padding_bottom }}px;--lp-h-scale:{{ section.settings.heading_scale | divided_by: 100.0 }}}
+{%- endstyle -%}
+<div id="lp-{{ section.id }}" class="lp lp-specs lp-specs--{{ section.settings.layout }}">
+  <div class="lp-wrap">
+    <div class="lp-head lp-head--left">
+      {%- if section.settings.eyebrow != blank -%}<span class="lp-eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+      <h2>{{ section.settings.heading }}</h2>
+      {%- if section.settings.intro != blank -%}<div class="lp-muted">{{ section.settings.intro }}</div>{%- endif -%}
+    </div>
+    <div class="lp-specs__grid">
+      <table class="lp-specs__table">
+        <caption class="lp-sr">{{ p.title }} specifications</caption>
+        <tbody>
+          {%- for block in section.blocks -%}
+            <tr {{ block.shopify_attributes }}><th scope="row">{{ block.settings.label }}</th><td>{{ block.settings.value }}</td></tr>
+          {%- endfor -%}
+        </tbody>
+      </table>
+      {%- if section.settings.for_whom != blank or section.settings.in_box != blank or section.settings.care != blank -%}
+        <div class="lp-specs__cards">
+          {%- if section.settings.for_whom != blank -%}<div class="lp-specs__card"><h3>{% render 'lp-icon', name: 'heart' %} {{ section.settings.for_whom_title }}</h3>{{ section.settings.for_whom }}</div>{%- endif -%}
+          {%- if section.settings.in_box != blank -%}<div class="lp-specs__card"><h3>{% render 'lp-icon', name: 'box' %} {{ section.settings.in_box_title }}</h3>{{ section.settings.in_box }}</div>{%- endif -%}
+          {%- if section.settings.care != blank -%}<div class="lp-specs__card"><h3>{% render 'lp-icon', name: 'droplet' %} {{ section.settings.care_title }}</h3>{{ section.settings.care }}</div>{%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+<style>
+.lp-specs__grid{display:grid;gap:24px}
+.lp-specs__table{width:100%;border-collapse:collapse;font-size:.96rem}
+.lp-specs__table th,.lp-specs__table td{text-align:left;padding:13px 4px;border-bottom:1px solid color-mix(in srgb,var(--lp-fg) 14%,transparent);vertical-align:top}
+.lp-specs__table th{font-weight:600;width:40%;padding-right:16px}
+.lp-specs--cards .lp-specs__table tbody{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px}
+.lp-specs--cards .lp-specs__table tr{display:flex;flex-direction:column;background:color-mix(in srgb,var(--lp-fg) 5%,var(--lp-bg));border-radius:var(--lp-radius);padding:14px}
+.lp-specs--cards .lp-specs__table th,.lp-specs--cards .lp-specs__table td{border:0;padding:0;width:auto}
+.lp-specs--cards .lp-specs__table th{font-size:.78rem;text-transform:uppercase;letter-spacing:.08em}
+.lp-specs__cards{display:grid;gap:14px;align-content:start}
+.lp-specs__card{border:1px solid color-mix(in srgb,var(--lp-fg) 14%,transparent);border-radius:var(--lp-radius);padding:18px}
+.lp-specs__card h3{display:flex;gap:.5em;align-items:center;font-size:1rem}
+.lp-specs__card .lp-icon{color:var(--lp-accent);width:20px;height:20px}
+.lp-specs__card p:last-child,.lp-specs__card ul:last-child{margin-bottom:0}
+@media(min-width:750px){.lp-specs__grid{grid-template-columns:1.4fr 1fr;gap:48px}.lp-specs--cards .lp-specs__grid{grid-template-columns:1fr}}
+</style>
+{% schema %}
+{
+  "name": "LP · Specs & facts",
+  "tag": "section",
+  "settings": [
+    { "type": "product", "id": "product", "label": "Product", "info": "Only needed outside product templates." },
+    { "type": "select", "id": "layout", "label": "Layout", "default": "table", "options": [ { "value": "table", "label": "Table + fact cards" }, { "value": "cards", "label": "Spec tiles" } ] },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "The details" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Specifications" },
+    { "type": "richtext", "id": "intro", "label": "Intro" },
+    { "type": "text", "id": "for_whom_title", "label": "Who it's for · title", "default": "Who it's for" },
+    { "type": "richtext", "id": "for_whom", "label": "Who it's for" },
+    { "type": "text", "id": "in_box_title", "label": "In the box · title", "default": "What's in the box" },
+    { "type": "richtext", "id": "in_box", "label": "What's in the box" },
+    { "type": "text", "id": "care_title", "label": "Care · title", "default": "Care" },
+    { "type": "richtext", "id": "care", "label": "Care instructions" },
+    {"type":"header","content":"Colours"},
+    {"type":"color","id":"color_bg","label":"Background","default":"#ffffff"},
+    {"type":"color","id":"color_text","label":"Text","default":"#121212"},
+    {"type":"color","id":"color_accent","label":"Accent","default":"#334fb4"},
+    {"type":"color","id":"color_button","label":"Button","default":"#121212"},
+    {"type":"color","id":"color_button_text","label":"Button text","default":"#ffffff"},
+    {"type":"header","content":"Typography"},
+    {"type":"font_picker","id":"heading_font","label":"Heading font","default":"assistant_n4"},
+    {"type":"font_picker","id":"body_font","label":"Body font","default":"assistant_n4"},
+    {"type":"range","id":"heading_scale","label":"Heading size","min":80,"max":140,"step":5,"unit":"%","default":100},
+    {"type":"header","content":"Spacing & shape"},
+    {"type":"range","id":"radius","label":"Corner radius","min":0,"max":40,"step":2,"unit":"px","default":8},
+    {"type":"range","id":"padding_top","label":"Top padding","min":0,"max":120,"step":4,"unit":"px","default":56},
+    {"type":"range","id":"padding_bottom","label":"Bottom padding","min":0,"max":120,"step":4,"unit":"px","default":56}
+  ],
+  "blocks": [ { "type": "spec", "name": "Spec row", "settings": [ { "type": "text", "id": "label", "label": "Label", "default": "Material" }, { "type": "text", "id": "value", "label": "Value", "default": "100% cotton" } ] } ],
+  "presets": [ { "name": "LP · Specs & facts", "blocks": [ { "type": "spec" }, { "type": "spec" } ] } ]
+}
+{% endschema %}
